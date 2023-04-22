@@ -25,15 +25,24 @@ email varchar(255) NOT NULL,
 PRIMARY KEY (username)
 );
 
-
+LOCK TABLES users WRITE;
 INSERT INTO users (username,password,nomApels,email) value ("marraya","Ma@ara","Maria Raices","mrraynet@gmail.com");
+INSERT INTO users (username,password,nomApels,email) value ("AntAn","AnA#$","Antonio Andres","antmannn@gmail.com");
+INSERT INTO users (username,password,nomApels,email) values ("NicoGico","Ni#$Gii","Nicolas Gimenez","nicogi@gmail.com");
+UNLOCK TABLES;
 
 CREATE TABLE countries (
 country_code varchar(2) NOT NULL,
 country_name varchar(255) NOT NULL,
 location POINT NOT NULL,
-situation ENUM ("Tension Between Countries","Risk of war","high crime","political instability","Natural Disaster") NOT NULL,
+situation ENUM ("Tension Between Countries","Risk of war","War","high crime","political instability","Natural Disaster") NOT NULL,
 PRIMARY KEY (country_code)
 );
+
+LOCK TABLES countries WRITE;
+INSERT INTO countries (country_code,country_name,location,situation) VALUE ("UA","Ukraine",Point(49.0000000,32.0000000),"War");
+INSERT INTO countries (country_code,country_name,location,situation) VALUE ("SOM","Somalia",Point(10.0000000,49.0000000),"War");
+INSERT INTO countries (country_code,country_name,location,situation) VALUE ("IND","Indonesia",Point(-5.0000000,120.0000000),"Natural Disaster");
+UNLOCK TABLES;
 
 
