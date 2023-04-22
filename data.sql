@@ -8,7 +8,8 @@ press_media varchar(255) NOT NULL,
 doc_identificator varchar(50) NOT NULL,
 num_identificator int(50) NOT NULL,
 country_id varchar(2) NOT NULL, ####Notacion ISO 3166-1 alpha-2
-PRIMARY KEY (id)
+PRIMARY KEY (id),
+FOREIGN KEY (country_id) REFERENCES countries(country_code)
 );
 
 LOCK TABLES clients WRITE;
@@ -22,7 +23,8 @@ username varchar(100) NOT NULL,
 password varchar (255) NOT NULL,
 nomApels varchar(255) NOT NULL,
 email varchar(255) NOT NULL,
-PRIMARY KEY (username)
+PRIMARY KEY (username),
+FOREIGN KEY (username) REFERENCES booking (user_id)
 );
 
 LOCK TABLES users WRITE;
@@ -36,13 +38,14 @@ country_code varchar(2) NOT NULL,
 country_name varchar(255) NOT NULL,
 location POINT NOT NULL,
 situation ENUM ("Tension Between Countries","Risk of war","War","high crime","political instability","Natural Disaster") NOT NULL,
-PRIMARY KEY (country_code)
+PRIMARY KEY (country_code),
+FOREIGN KEY (country_code) REFERENCES cliets(country_id)
 );
 
 LOCK TABLES countries WRITE;
-INSERT INTO countries (country_code,country_name,location,situation) VALUE ("UA","Ukraine",Point(49.0000000,32.0000000),"War");
-INSERT INTO countries (country_code,country_name,location,situation) VALUE ("SOM","Somalia",Point(10.0000000,49.0000000),"War");
-INSERT INTO countries (country_code,country_name,location,situation) VALUE ("IND","Indonesia",Point(-5.0000000,120.0000000),"Natural Disaster");
+INSERT INTO countries (country_code,country_name,location,situation) VALUE ("UA","Ukraine",ST_GeomFromText('POINT(49.0000000 32.0000000)'),"War");
+INSERT INTO countries (country_code,country_name,location,situation) VALUE ("SO","Somalia",ST_GeomFromText('Point(10.0000000,49.0000000)'),"War");
+INSERT INTO countries (country_code,country_name,location,situation) VALUE ("ID","Indonesia",ST_GeomFromText('Point(-5.0000000,120.0000000)'),"Natural Disaster");
 UNLOCK TABLES;
 
 
