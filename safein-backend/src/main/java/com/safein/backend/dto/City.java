@@ -90,7 +90,6 @@ public class City {
 	/**
 	 * Sets the location of the city
 	 * 
-	 * 
 	 * @param location (Point) (Latitude, Longitude)
 	 */
 
@@ -101,7 +100,6 @@ public class City {
 	/**
 	 * Gets the name of the city
 	 * 
-	 * 
 	 * @return name (String)
 	 */
 	public String getName() {
@@ -109,49 +107,38 @@ public class City {
 	}
 
 	/**
-	 *
+	 * Sets the name of the city
 	 * 
-	 * 
-	 * @param name
+	 * @param name (String)
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
-	 *
+	 * Gets the country
 	 * 
-	 * @return the country
+	 * @return country (Country)
 	 */
 	public Country getCountry() {
 		return country;
 	}
 
 	/**
-	 *
+	 * Sets the country
 	 * 
-	 * @param country
+	 * @param country (Country)
 	 */
 	public void setCountry(Country country) {
 		this.country = country;
 	}
 
-	/**
-	 *
-	 * 
-	 * @return list of hotels
-	 */
 	@JsonIgnore
 	public List<Hotel> getHotels() {
 		return hotels;
 	}
 
-	/**
-	 * |
-	 * 
-	 * 
-	 * @param hotels
-	 */
+
 	public void setHotels(List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
