@@ -21,7 +21,7 @@ id INT NOT NULL AUTO_INCREMENT,
 country_code varchar(2) NOT NULL UNIQUE,
 country_name varchar(255) NOT NULL,
 location POINT NOT NULL,
-situation ENUM ("Tension Between Countries","Risk of war","War","high crime","political instability","Natural Disaster") NOT NULL,
+situation ENUM ("Tension Between Countries","Risk of war","War","High crime","Political instability","Natural Disaster") NOT NULL,
 PRIMARY KEY (id)
 );
 
