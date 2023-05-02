@@ -50,8 +50,8 @@ INSERT INTO customers (name,Phonenumber,email,press_media,doc_identificator,num_
 /* Bookings Table */
 CREATE TABLE IF NOT EXISTS bookings (
   id int not null auto_increment,
-  import double default null,
-  num_persons int default null,
+  amount double default null,
+  num_people int default null,
   is_payed boolean not null default 0,/* By default false*/
   is_pending_pay boolean not null default 0,/* By default false*/
   customer_id int,

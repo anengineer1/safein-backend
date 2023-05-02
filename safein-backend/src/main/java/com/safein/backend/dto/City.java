@@ -31,6 +31,7 @@ public class City {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private long id;
 
 	@Column(name = "location")
@@ -43,7 +44,7 @@ public class City {
 	@JoinColumn(name = "id_country")
 	private Country country;
 
-	@OneToMany(mappedBy = "id_city", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "city", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Hotel> hotels;
 
 	/**
