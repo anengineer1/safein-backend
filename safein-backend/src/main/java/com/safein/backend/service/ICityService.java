@@ -3,6 +3,7 @@ package com.safein.backend.service;
 import java.util.List;
 
 import com.safein.backend.dto.City;
+import com.safein.backend.dto.Country;
 
 /**
  * ICityService
@@ -46,7 +47,7 @@ public interface ICityService {
 	 * @param id_country (long)
 	 * @return List of cities
 	 */
-	public List<City> listCitiesByIdCountry(long id_country); // List every city in the same country given the internal
+	public List<City> listCitiesByCountry(Country country); // List every city in the same country given the internal
 																// numerical code
 
 	/**

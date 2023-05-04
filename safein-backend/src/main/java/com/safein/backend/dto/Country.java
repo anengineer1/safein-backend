@@ -33,7 +33,7 @@ public class Country {
 	@Column(name = "id")
 	private long id;
 
-	@Column(name = "country_code")
+	@Column(name = "country_code", unique = true)
 	private String countryCode;
 
 	@Column(name = "country_name")

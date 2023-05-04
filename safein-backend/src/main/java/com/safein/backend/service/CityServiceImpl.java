@@ -3,6 +3,7 @@ package com.safein.backend.service;
 import java.util.List;
 
 import com.safein.backend.dto.City;
+import com.safein.backend.dto.Country;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,13 +37,13 @@ public class CityServiceImpl implements ICityService {
 	}
 
 	@Override
-	public List<City> listCitiesByIdCountry(long id_country) {
-		return iCityDAO.findByIdCountry(id_country);
+	public List<City> listCitiesByCountry(Country id_country) {
+		return iCityDAO.findByCountry(id_country);
 	}
 
 	@Override
 	public List<City> listCitiesByCountryCode(String country_code) {
-		return iCityDAO.findByIdCountry(iCountryDAO.findByCountryCode(country_code).getId());
+		return iCityDAO.findByCountry(iCountryDAO.findByCountryCode(country_code));
 	}
 
 }
