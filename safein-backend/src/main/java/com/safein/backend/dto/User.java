@@ -56,7 +56,7 @@ public class User {
 	}
 
 	/**
-	 * Constructor with paramenters
+	 * Constructor with parameters
 	 * 
 	 * @param id
 	 * @param username
