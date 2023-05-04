@@ -6,16 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.safein.backend.dto.Customers;
 
-
-
-public interface ICustomersDAO extends JpaRepository<Customers, Integer>{
+public interface ICustomersDAO extends JpaRepository<Customers, Long> {
 
 	List<Customers> findByEmail(String mail);
 
-	List<Customers> findCostumersByNum(int num);
+	List<Customers> findCustomersByNum(Long num);
 
-	List<Customers> findCostumersByMedia(String media);
-	
-	Customers findByNumAndDoctype(int num, String doctype);
+	List<Customers> findCustomersByMedia(String media);
+
+	Customers findByNumAndDoctype(Long num, String doctype);
 
 }

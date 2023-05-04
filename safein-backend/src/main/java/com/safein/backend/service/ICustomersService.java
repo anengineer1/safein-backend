@@ -4,23 +4,21 @@ import java.util.List;
 
 import com.safein.backend.dto.Customers;
 
-
-
 public interface ICustomersService {
 
+	Customers customersById(Long id);
 
+	Customers saveCustomer(Customers customers);
 
+	Customers updateCustomer(Customers customers);
 
+	List<Customers> listCustomers();
 
-	Customers costumersById(int id);
+	List<Customers> listCustomersByDocNum(Long num);
 
+	List<Customers> listCustomersByEmail(String mail);
 
-	Customers guardarCostumer(Customers clients);
+	List<Customers> listCustomersByMedia(String media);
 
-
-
-
-	Customers actualizarCostumer(Customers clientes);
-
-	List<Customers> listCostumers();
+	Customers listByNumAndDoctype(Long num, String doctype);
 }

@@ -10,75 +10,59 @@ import com.safein.backend.dto.Customers;
 public class CustomersServiceImpl implements ICustomersService {
 
 	@Autowired
-	ICustomersDAO iCostumersDAO;
+	ICustomersDAO iCustomersDAO;
 
 	@Override
-	public List<Customers> listCostumers() {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.findAll();
+	public List<Customers> listCustomers() {
+
+		return iCustomersDAO.findAll();
 	}
 
 	@Override
-	public Customers guardarCostumer(Customers clients) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.save(clients);
+	public Customers saveCustomer(Customers customers) {
+
+		return iCustomersDAO.save(customers);
 	}
 
 	@Override
-	public Customers actualizarCostumer(Customers clientes) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.save(clientes);
+	public Customers updateCustomer(Customers customers) {
+
+		return iCustomersDAO.save(customers);
 	}
 
 	public void deleteCostumerById(Long id) {
-		// TODO Auto-generated method stub
-		iCostumersDAO.deleteById(id);
-	}
 
-	public List<Customers> listCostumersByDocNum(int num) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.findCostumersByNum(num);
+		iCustomersDAO.deleteById(id);
 	}
 
 	@Override
-	public Customers costumersById(int id) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.findById(id).get();
+	public List<Customers> listCustomersByDocNum(Long num) {
+
+		return iCustomersDAO.findCustomersByNum(num);
 	}
 
-	public Customers createCostumers(Customers client) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.save(client);
+	@Override
+	public Customers customersById(Long id) {
+
+		return iCustomersDAO.findById(id).get();
 	}
 
-	public Customers listCostumersById(int id) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.findById(id).get();
+	@Override
+	public List<Customers> listCustomersByEmail(String mail) {
+
+		return iCustomersDAO.findByEmail(mail);
 	}
 
+	@Override
+	public List<Customers> listCustomersByMedia(String media) {
 
-	public List<Customers> listCostumersByEmail(String mail) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.findByEmail(mail);
+		return iCustomersDAO.findCustomersByMedia(media);
 	}
 
-	public Customers clientsById(int id) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.findById(id).get();
+	@Override
+	public Customers listByNumAndDoctype(Long num, String doctype) {
+
+		return iCustomersDAO.findByNumAndDoctype(num, doctype);
 	}
-
-	public List<Customers> listCostumersByMedia(String media) {
-		// TODO Auto-generated method stub
-		return iCostumersDAO.findCostumersByMedia(media);
-	}
-	
-	public Customers listByNumAndDoctype(int num, String doctype) {
-		
-		return iCostumersDAO.findByNumAndDoctype(num, doctype);
-	}
-	
-
-
-
 
 }

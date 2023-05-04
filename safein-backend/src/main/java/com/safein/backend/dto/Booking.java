@@ -46,7 +46,7 @@ public class Booking {
 
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
-	private Client client;
+	private Customers customers;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -69,17 +69,17 @@ public class Booking {
 	 * @param numPeople    (int)
 	 * @param isPayed      (boolean)
 	 * @param isPendingPay (boolean)
-	 * @param client       (Customer)
+	 * @param customers       (Customer)
 	 * @param user         (User)
 	 * @param handles
 	 */
-	public Booking(double amount, int numPeople, boolean isPayed, boolean isPendingPay, Client client, User user,
+	public Booking(double amount, int numPeople, boolean isPayed, boolean isPendingPay, Customers customers, User user,
 			List<Handle> handles) {
 		this.amount = amount;
 		this.numPeople = numPeople;
 		this.isPayed = isPayed;
 		this.isPendingPay = isPendingPay;
-		this.client = client;
+		this.customers = customers;
 		this.user = user;
 		this.handles = handles;
 	}
@@ -130,12 +130,12 @@ public class Booking {
 	}
 
 	/**
-	 * Sets the client
+	 * Sets the customers
 	 * 
-	 * @param client (Client)
+	 * @param customers (Customers)
 	 */
-	public void setClient(Client client) {
-		this.client = client;
+	public void setCustomers(Customers customers) {
+		this.customers = customers;
 	}
 
 	/**
@@ -202,12 +202,12 @@ public class Booking {
 	}
 
 	/**
-	 * Get client
+	 * Get customers
 	 * 
-	 * @return Client
+	 * @return Customers
 	 */
-	public Client getClient() {
-		return client;
+	public Customers getCustomers() {
+		return customers;
 	}
 
 	/**
@@ -234,7 +234,7 @@ public class Booking {
 	 */
 	@Override
 	public String toString() {
-		return "Booking [amount=" + amount + ", client=" + client + ", handles=" + handles + ", id=" + id
+		return "Booking [amount=" + amount + ", customers=" + customers + ", handles=" + handles + ", id=" + id
 				+ ", isPayed=" + isPayed + ", isPendingPay=" + isPendingPay + ", numPeople=" + numPeople + ", user="
 				+ user + "]";
 	}

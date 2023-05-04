@@ -11,81 +11,79 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.safein.backend.dto.Booking;
+import com.safein.backend.dto.Handle;
 import com.safein.backend.dto.Room;
+import com.safein.backend.service.BookingServiceImpl;
 
 public class BookingController {
 
 	@Autowired
 	BookingServiceImpl bookingServiceImpl;
 
-	@Autowired
-	HandlesServiceImpl handlesServiceImpl;
-	
+	/*
+	 * @Autowired HandleServiceImpl handlesServiceImpl;
+	 */
 
 	@GetMapping("/booking")
-	public List<Booking> listarBookings() {
-		return handlesServiceImpl.listBoking();
+	public List<Handle> listBookings() {
+		return bookingServiceImpl.listAllBookings();
 	}
 
 	@GetMapping("/booking/{id}")
-	public Booking listBookingXID(@PathVariable(name = "id") int id) {
-		return handlesServiceImpl.listBookingById(id);
+	public Handle listBookingXID(@PathVariable(name = "id") Long id) {
+		return bookingServiceImpl.listBookingsByBookingId(id);
 	}
 
-	@GetMapping("/booking/user/{userid}")
-	public List<Booking> listBookingByUser(@PathVariable(name = "users") String users) {
-		return handlesServiceImpl.listBookingByUsers(users);
+	@GetMapping("/booking/user/{users}")
+	public List<Handle> listBookingByUser(@PathVariable(name = "users") Long user_id) {
+		return bookingServiceImpl.listBookingsByUserId(user_id);
 	}
 
-	@GetMapping("/booking/customer/{customerid}")
-	public List<Booking> listBookingByCustomer(@PathVariable(name = "customer") int id) {
+	@GetMapping("/booking/customer/{customer}")
+	public List<Handle> listBookingByCustomer(@PathVariable(name = "customer") Long id) {
 
-		return handlesServiceImpl.listBookingByCustomerId(id);
+		return bookingServiceImpl.listBookingsByCustomerId(id);
 	}
-/*
-	@GetMapping("/booking/rooms")
-	public List<Booking> listBookingByRooms(@PathVariable(name = "rooms") String rooms) {
+	/*
+	 * @GetMapping("/booking/rooms") public List<Booking>
+	 * listBookingByRooms(@PathVariable(name = "rooms") String rooms) {
+	 * 
+	 * return handlesServiceImpl.listRoomsByBooking(rooms); }
+	 */
 
-		return handlesServiceImpl.listRoomsByBooking(rooms);
-	}*/
+	@GetMapping("/booking/rooms/{rooms}")
+	public List<Room> listRoomByBookingId(@PathVariable(name = "rooms") Long id) {
+		return bookingServiceImpl.listRoomsByBookingId(id);
+	}
 
-	@GetMapping("/booking/rooms/{id}")
-	public List<Room> listRoomByBookingId(@PathVariable(name = "rooms") int id) {
-		return handlesServiceImpl.listRoomByBookings(id);
+	@GetMapping("/booking/hotel/{hotel}")
+	public List<Handle> listHotelByBookingId(@PathVariable(name = "hotel") Long id) {
+		return bookingServiceImpl.listHandlesByHotelId(id);
 	}
-	@GetMapping("/booking/hotel/{id}")
-	public List<Room> listHotelByBookingId(@PathVariable(name = "hotel") int id) {
-		return handlesServiceImpl.listHotelByBookings(id);
+
+	@PostMapping("/booking")
+	public Booking createBooking(@RequestBody Booking booking) {
+		return bookingServiceImpl.saveBooking(booking);
 	}
-@PostMapping("/booking")
-public Booking createBooking (@RequestBody Booking booking) {
-	return bookingServiceImpl.createBooking(booking);
+
+	@PutMapping("/booking/{id}")
+	public Booking updateBooking(@PathVariable(name = "id") Long id, @RequestBody Booking booking) {
+
+		Booking booking_selected = bookingServiceImpl.getBookingById(id);
+
+		booking_selected.setAmount(booking.getAmount());
+		booking_selected.setNumPeople(booking.getNumPeople());
+		booking_selected.setPayed(booking.isPayed());
+		booking_selected.setPendingPay(booking.isPendingPay());
+		booking_selected.setUser(booking.getUser());
+		booking_selected.setCustomers(booking.getCustomers());
+		
+		return bookingServiceImpl.updateBooking(booking_selected);
+	}
+
+	@DeleteMapping("/booking/{id}")
+	public String eliminarBooking(@PathVariable(name = "id") Long id) {
+		bookingServiceImpl.deleteBookingById(id);
+		return "Booking deleted.";
+	}
 }
-@PutMapping("/booking/{id}")
-public Booking updateBooking (@PathVariable (name = "id")int id, @RequestBody Booking booking) {
-
-Booking booking_actualizado = new Booking();
-
-Booking booking_seleccionado = bookingServiceImpl.bookingById(id);
-
-booking_seleccionado.setDoc_identifier(booking.getDoc_identifier());
-booking_seleccionado.setEmail(booking.getEmail());
-booking_seleccionado.setName(booking.getName());
-booking_seleccionado.setPhonenumber(booking.getPhonenumber());
-booking_seleccionado.setNum_identifier(booking.getNum_identifier());
-booking_seleccionado.setPress_media(booking.getPress_media());
-
-booking_seleccionado = bookingServiceImpl.updateBooking(booking_seleccionado);
-
-System.out.println("El empleado actualizado es: " + costumers_actualizado);
-
-return booking_actualizado;
-}
-
-@DeleteMapping("/booking/{id}")
-public String eliminarBooking(@PathVariable(name="id")int id) {
-	bookingServiceImpl.deleteBookingById(id);
-	return "Booking deleted.";
-}
-}
-

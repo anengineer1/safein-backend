@@ -46,7 +46,7 @@ public class Country {
 	private CountrySituation situation;
 
 	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Client> clients;
+	private List<Customers> customers;
 
 	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<City> cities;
@@ -65,16 +65,16 @@ public class Country {
 	 * @param country_name
 	 * @param location
 	 * @param situation
-	 * @param clients
+	 * @param customers
 	 * @param cities
 	 */
 	public Country(String country_code, String country_name, Point location, CountrySituation situation,
-			List<Client> clients, List<City> cities) {
+			List<Customers> customers, List<City> cities) {
 		this.countryCode = country_code;
 		this.countryName = country_name;
 		this.location = location;
 		this.situation = situation;
-		this.clients = clients;
+		this.customers = customers;
 		this.cities = cities;
 	}
 
@@ -127,10 +127,10 @@ public class Country {
 	/**
 	 * Sets the references to the join many to one
 	 * 
-	 * @param clients (List<Clients>)
+	 * @param customers (List<Customerss>)
 	 */
-	public void setClients(List<Client> clients) {
-		this.clients = clients;
+	public void setCustomerss(List<Customers> customers) {
+		this.customers = customers;
 	}
 
 	/**
@@ -190,8 +190,8 @@ public class Country {
 	}
 
 	@JsonIgnore
-	public List<Client> getClients() {
-		return clients;
+	public List<Customers> getCustomers() {
+		return customers;
 	}
 
 	@JsonIgnore
@@ -201,7 +201,7 @@ public class Country {
 
 	@Override
 	public String toString() {
-		return "Country [cities=" + cities + ", clients=" + clients + ", countryCode=" + countryCode + ", countryName="
+		return "Country [cities=" + cities + ", customers=" + customers + ", countryCode=" + countryCode + ", countryName="
 				+ countryName + ", id=" + id + ", location=" + location + ", situation=" + situation + "]";
 	}
 

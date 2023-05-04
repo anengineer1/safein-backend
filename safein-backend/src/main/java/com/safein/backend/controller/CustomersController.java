@@ -13,71 +13,60 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.safein.backend.dto.Customers;
 import com.safein.backend.service.CustomersServiceImpl;
 
-
 public class CustomersController {
 
-	
 	@Autowired
-	CustomersServiceImpl clientsServiceImpl;
+	CustomersServiceImpl customersServiceImpl;
 
-@GetMapping("/costumers")
-public List<Customers> listarCostumers() {
-	return clientsServiceImpl.listCostumers();
-}
+	@GetMapping("/customers")
+	public List<Customers> listarCustomers() {
+		return customersServiceImpl.listCustomers();
+	}
 
+	@GetMapping("/customers/{id}")
+	public Customers listCustomersXID(@PathVariable(name = "id") Long id) {
+		return customersServiceImpl.customersById(id);
+	}
 
-@GetMapping("/costumers/{id}")
-public Customers listCostumersXID(@PathVariable(name = "id") int  id) {
-	return clientsServiceImpl.listCostumersById(id);
-}
+	@GetMapping("/customers/doc/{doctype}/{num}")
+	public Customers listDocNumberCustomers(@PathVariable(name = "num") Long num,
+			@PathVariable(name = "doctype") String doctype) {
+		return customersServiceImpl.listByNumAndDoctype(num, doctype);
+	}
 
-@GetMapping("/costumers/doc/{doctype}/{num}")
-public Customers listDocNumberCostumers(@PathVariable(name = "num") int  num, @PathVariable (name = "doctype") String doctype) {
-	return clientsServiceImpl.listByNumAndDoctype(num,doctype);
-}
+	@GetMapping("/customers/media/{media}")
+	public List<Customers> listCustomersByMedia(@PathVariable(name = "media") String media) {
+		return customersServiceImpl.listCustomersByMedia(media);
+	}
 
+	@GetMapping("/customers/email/{mail}")
+	public List<Customers> listCustomersByEmail(@PathVariable(name = "mail") String mail) {
+		return customersServiceImpl.listCustomersByEmail(mail);
+	}
 
-@GetMapping("/costumers/media/{media}")
-public List<Customers> listCostumersByMedia(@PathVariable(name = "media") String  media) {
-	return clientsServiceImpl.listCostumersByMedia(media);
-}
+	@PostMapping("/customers")
+	public Customers createCustomers(@RequestBody Customers customers) {
+		return customersServiceImpl.saveCustomer(customers);
+	}
 
-@GetMapping("/costumers/email/{mail}")
-public List<Customers> listCostumersByEmail(@PathVariable(name = "mail") String  mail) {
-	return clientsServiceImpl.listCostumersByEmail(mail);
-}
+	@PutMapping("/customers/{id}")
+	public Customers actualizarCustomers(@PathVariable(name = "id") Long id, @RequestBody Customers customers) {
 
+		Customers customers_selected = customersServiceImpl.customersById(id);
 
-@PostMapping("/costumers")
-public Customers createCostumers(@RequestBody Customers client) {
-	return clientsServiceImpl.createCostumers(client);
-}
+		customers_selected.setDoc_identifier(customers.getDoc_identifier());
+		customers_selected.setEmail(customers.getEmail());
+		customers_selected.setName(customers.getName());
+		customers_selected.setPhonenumber(customers.getPhonenumber());
+		customers_selected.setNum_identifier(customers.getNum_identifier());
+		customers_selected.setPress_media(customers.getPress_media());
 
+		return customersServiceImpl.updateCustomer(customers_selected);
+	}
 
-@PutMapping("/costumers/{id}")
-public Customers actualizarCostumers(@PathVariable(name = "id") int id, @RequestBody Customers client) {
-
-	Customers costumers_actualizado = new Customers();
-
-	Customers costumers_seleccionado = clientsServiceImpl.clientsById(id);
-
-	costumers_seleccionado.setDoc_identifier(client.getDoc_identifier());
-	costumers_seleccionado.setEmail(client.getEmail());
-	costumers_seleccionado.setName(client.getName());
-	costumers_seleccionado.setPhonenumber(client.getPhonenumber());
-	costumers_seleccionado.setNum_identifier(client.getNum_identifier());
-	costumers_seleccionado.setPress_media(client.getPress_media());
-
-	costumers_seleccionado = clientsServiceImpl.actualizarCostumer(costumers_seleccionado);
-
-	System.out.println("El empleado actualizado es: " + costumers_actualizado);
-
-	return costumers_actualizado;
-}
-
-@DeleteMapping("/costumers/{id}")
-public String eliminarCostumer(@PathVariable(name="id")Long id) {
-	clientsServiceImpl.deleteCostumerById(id);
-	return "User deleted.";
-}
+	@DeleteMapping("/customers/{id}")
+	public String deleteCustomer(@PathVariable(name = "id") Long id) {
+		customersServiceImpl.deleteCostumerById(id);
+		return "User deleted.";
+	}
 }
