@@ -43,8 +43,8 @@ public class Hotel {
 	@OneToMany
 	@JoinColumn(name = "cities")
 	private List<City> cities;
-	
-	public Hotel(int id, String name, String phonenumber, String email, String address, String location, String securityLevel, boolean energy_suficient, List<City> cities) {
+	public Hotel(int id, String name, String phonenumber, String email, String address, String location,
+			String securityLevel, boolean energy_suficient, List<City> cities) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -56,10 +56,6 @@ public class Hotel {
 		this.energy_suficient = energy_suficient;
 		this.cities = cities;
 	}
-	
-	public Hotel() {
-	}
-
 	public int getId() {
 		return id;
 	}
