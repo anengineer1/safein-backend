@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+safein-backend/.mvn/wrapper/maven-wrapper.jar
+safein-backend/.mvn/wrapper/maven-wrapper.jar
+safein-backend/.mvn/wrapper/maven-wrapper.properties
+safein-backend/.mvn/wrapper/maven-wrapper.jar
+safein-backend/.mvn/wrapper/maven-wrapper.jar
+safein-backend/.settings/*
+safein-backend/target/*
+

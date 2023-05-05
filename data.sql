@@ -121,16 +121,17 @@ num_personas INT NOT NULL,
 internet_type ENUM('Fiber', 'Cable', 'Satellite') NOT NULL,
 is_smoker BOOLEAN NOT NULL,
 has_terrace BOOLEAN NOT NULL,
+price_per_night double NOT NULL,
 id_hotel INT,
 PRIMARY KEY (id),
 CONSTRAINT hotel_fk FOREIGN KEY (id_hotel) REFERENCES hotels (id)
 );
 
 LOCK TABLES rooms WRITE;
-INSERT INTO rooms (id, num_personas, internet_type, is_smoker, has_terrace, id_hotel) VALUES
-('103', 1, 'Fiber', false, true, 1),
-('204', 1, 'Fiber', false, true, 1),
-('302', 3, 'Fiber', false, true, 1);
+INSERT INTO rooms (id, num_personas, internet_type, is_smoker, has_terrace, id_hotel, price_per_night) VALUES
+('103', 1, 'Fiber', false, true, 1, 60),
+('204', 1, 'Fiber', false, true, 1, 60),
+('302', 3, 'Fiber', false, true, 1, 60);
 UNLOCK TABLES;
 
 

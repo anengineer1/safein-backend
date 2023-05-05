@@ -2,9 +2,9 @@
  * 
  */
 package com.safein.backend.service;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class RoomServiceImpl implements IRoomService {
 
 	/** Get: List all rooms by Hotel ID */
 	@Override
-	public List<Room> findRoomsByHotelId(Long hotel_id) {
+	public List<Room> listRoomsByHotelId(Long hotel_id) {
 		return iRoomDAO.findRoomsByHotelId(hotel_id);
 	}
 
@@ -43,25 +43,25 @@ public class RoomServiceImpl implements IRoomService {
 
 	/** Get: List all rooms By {num_people} String */
 	@Override
-	public List<Room> findRoomsByNumPersons(Long num_people) {
+	public List<Room> listRoomsByNumPersons(Long num_people) {
 		return iRoomDAO.findRoomsByNumPersons(num_people);
 	}
 
 	/** Get: List all rooms By {internet_type} String */
 	@Override
-	public List<Room> findRoomsByInternet(String internet_type) {
+	public List<Room> listRoomsByInternet(String internet_type) {
 		return iRoomDAO.findRoomsByInternet(internet_type);
 	}
 
 	/** Get: List all rooms By {is_smoker} Boolean */
 	@Override
-	public List<Room> findRoomsBySmoker(Boolean is_smoker) {
+	public List<Room> listRoomsBySmoker(Boolean is_smoker) {
 		return iRoomDAO.findRoomsBySmoker(is_smoker);
 	}
 
 	/** Get: List all rooms By has_terrace{has_terrace}Boolean */
 	@Override
-	public List<Room> findRoomsByTerrace(Boolean has_terrace) {
+	public List<Room> listRoomsByTerrace(Boolean has_terrace) {
 		return iRoomDAO.findRoomsByTerrace(has_terrace);
 	}
 
@@ -70,4 +70,15 @@ public class RoomServiceImpl implements IRoomService {
 	 * num:people{num_people}Long Long
 	 */
 
+	@Override
+	public List<Room> listByHotelIdAndNumPersons(Long hotel_id, Long num_people) {
+		List<Room> rooms_by_hotel = listRoomsByHotelId(hotel_id);
+		List<Room> hs = new ArrayList<>();
+
+		for (Room room : rooms_by_hotel) {
+			hs.addAll(iRoomDAO.findRoomsByNumPersons(num_people));
+		}
+		
+		return hs;
+	}
 }
