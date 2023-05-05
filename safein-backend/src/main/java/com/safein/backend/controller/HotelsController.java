@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Hotel;
@@ -62,7 +61,9 @@ public class HotelsController {
 		hotels_seleccionado.setCities(hotels.getCities());
 		hotels_seleccionado.setEmail(hotels.getEmail());
 		hotels_seleccionado.setSecurityLevel(hotels.getSecurityLevel());
-		hotels_seleccionado.setLocation(hotels.getLocation());
+		
+		hotels_seleccionado.setLatitude(hotels.getLatitude());
+		hotels_seleccionado.setLongitude(hotels.getLongitude());
 
 		hotels_seleccionado = hotelsServiceImpl.updateHotels(hotels_seleccionado);
 

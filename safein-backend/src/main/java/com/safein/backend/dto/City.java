@@ -34,8 +34,11 @@ public class City {
 	@Column(name = "id")
 	private long id;
 
-	@Column(name = "location")
-	private Point location;
+	@Column(name = "latitude")
+	private double latitude;
+
+	@Column(name = "longitude")
+	private double longitude;
 
 	@Column(name = "name")
 	private String name;
@@ -55,19 +58,21 @@ public class City {
 	}
 
 	/**
-	 * |
-	 * Constructor with parameters
-	 * 
 	 * @param id
-	 * @param location
+	 * @param latitude
+	 * @param longitude
 	 * @param name
-	 * @param id_country
+	 * @param country
+	 * @param hotels
 	 */
-	public City(long id, Point location, String name, Country id_country) {
+	public City(long id, double latitude, double longitude, String name, Country country, List<Hotel> hotels) {
+		super();
 		this.id = id;
-		this.location = location;
+		this.latitude = latitude;
+		this.longitude = longitude;
 		this.name = name;
-		this.country = id_country;
+		this.country = country;
+		this.hotels = hotels;
 	}
 
 	/**
@@ -80,22 +85,38 @@ public class City {
 	}
 
 	/**
-	 * Gets the location
-	 * 
-	 * @return location (Point) (Latitude, Longitude)
+	 * @return the latitude
 	 */
-	public Point getLocation() {
-		return location;
+	public double getLatitude() {
+		return latitude;
 	}
 
 	/**
-	 * Sets the location of the city
-	 * 
-	 * @param location (Point) (Latitude, Longitude)
+	 * @return the longitude
 	 */
+	public double getLongitude() {
+		return longitude;
+	}
 
-	public void setLocation(Point location) {
-		this.location = location;
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param latitude the latitude to set
+	 */
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * @param longitude the longitude to set
+	 */
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	/**
@@ -139,18 +160,14 @@ public class City {
 		return hotels;
 	}
 
-
 	public void setHotels(List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
 
-	/**
-	 * New toString
-	 *
-	 */
 	@Override
 	public String toString() {
-		return "City [id=" + id + ", id_country=" + country + ", location=" + location + ", name=" + name + "]";
+		return "City [id=" + id + ", latitude=" + latitude + ", longitude=" + longitude + ", name=" + name
+				+ ", country=" + country + ", hotels=" + hotels + "]";
 	}
 
 }

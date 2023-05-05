@@ -8,8 +8,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.safein.backend.utilities.CountrySituation;
 
-import org.springframework.data.geo.Point;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,11 +37,14 @@ public class Country {
 	@Column(name = "country_name")
 	private String countryName;
 
-	@Column(name = "location")
-	private Point location;
+	@Column(name = "latitude")
+	private double latitude;
+
+	@Column(name = "longitude")
+	private double longitude;
 
 	@Column(name = "situation")
-	private CountrySituation situation;
+	private String situation;
 
 	@OneToMany(mappedBy = "country", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Customers> customers;
@@ -59,20 +60,23 @@ public class Country {
 	}
 
 	/**
-	 * Constructor with parameters
-	 * 
-	 * @param country_code
-	 * @param country_name
-	 * @param location
+	 * @param id
+	 * @param countryCode
+	 * @param countryName
+	 * @param latitude
+	 * @param longidude
 	 * @param situation
 	 * @param customers
 	 * @param cities
 	 */
-	public Country(String country_code, String country_name, Point location, CountrySituation situation,
-			List<Customers> customers, List<City> cities) {
-		this.countryCode = country_code;
-		this.countryName = country_name;
-		this.location = location;
+	public Country(long id, String countryCode, String countryName, double latitude, double longidude,
+			String situation, List<Customers> customers, List<City> cities) {
+		super();
+		this.id = id;
+		this.countryCode = countryCode;
+		this.countryName = countryName;
+		this.latitude = latitude;
+		this.longitude = longidude;
 		this.situation = situation;
 		this.customers = customers;
 		this.cities = cities;
@@ -106,21 +110,11 @@ public class Country {
 	}
 
 	/**
-	 * Sets the location
-	 * 
-	 * @param location (Point (org.springframework.data.geo.Point)) (latitude,
-	 *                 longitude)
-	 */
-	public void setLocation(Point location) {
-		this.location = location;
-	}
-
-	/**
 	 * Sets the status: On conflict, high crime, political instability
 	 * 
 	 * @param situation (enum CountrySituation)
 	 */
-	public void setSituation(CountrySituation situation) {
+	public void setSituation(String situation) {
 		this.situation = situation;
 	}
 
@@ -143,8 +137,7 @@ public class Country {
 	}
 
 	/**
-	 * |
-	 * Gets the internal Id
+	 * | Gets the internal Id
 	 * 
 	 * @return id (long)
 	 */
@@ -153,8 +146,7 @@ public class Country {
 	}
 
 	/**
-	 * |
-	 * Gets the country code
+	 * | Gets the country code
 	 * 
 	 * @return countryCode (String of 2 char) (ISO 3166-1 alpha-2)
 	 */
@@ -172,21 +164,47 @@ public class Country {
 	}
 
 	/**
-	 * Gets the location
-	 * 
-	 * @return location (Point) (Latitude, Longitude)
-	 */
-	public Point getLocation() {
-		return location;
-	}
-
-	/**
 	 * Gets the country situation
 	 * 
 	 * @return situation (enum CountrySituation)
 	 */
-	public CountrySituation getSituation() {
+	public String getSituation() {
 		return situation;
+	}
+
+	/**
+	 * @return the latitude
+	 */
+	public double getLatitude() {
+		return latitude;
+	}
+
+	/**
+	 * @return the longidude
+	 */
+	public double getLongitude() {
+		return longitude;
+	}
+
+	/**
+	 * @param latitude the latitude to set
+	 */
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	/**
+	 * @param longidude the longidude to set
+	 */
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	/**
+	 * @param customers the customers to set
+	 */
+	public void setCustomers(List<Customers> customers) {
+		this.customers = customers;
 	}
 
 	@JsonIgnore
@@ -201,8 +219,9 @@ public class Country {
 
 	@Override
 	public String toString() {
-		return "Country [cities=" + cities + ", customers=" + customers + ", countryCode=" + countryCode + ", countryName="
-				+ countryName + ", id=" + id + ", location=" + location + ", situation=" + situation + "]";
+		return "Country [id=" + id + ", countryCode=" + countryCode + ", countryName=" + countryName + ", latitude="
+				+ latitude + ", longitude=" + longitude + ", situation=" + situation + ", customers=" + customers
+				+ ", cities=" + cities + "]";
 	}
 
 }

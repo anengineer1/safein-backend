@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
 import com.safein.backend.dto.Room;
 import com.safein.backend.service.BookingServiceImpl;
 
+@RestController
 public class BookingController {
 
 	@Autowired

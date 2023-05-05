@@ -36,7 +36,7 @@ public class Room {
 	@Column(name = "num_people")
 	private Long numPeople;
 
-	@Column(name = "code")
+	@Column(name = "room_code")
 	private String code;
 
 	@Column(name = "price_per_night")

@@ -32,7 +32,7 @@ public class Booking {
 	@Column(name = "id")
 	private long id;
 
-	@Column(name = "import")
+	@Column(name = "amount")
 	private double amount;
 
 	@Column(name = "num_people")
