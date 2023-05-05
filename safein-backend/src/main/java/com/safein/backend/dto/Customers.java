@@ -9,19 +9,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 /**
- * @author Alejandro Jiménez Álvarez
+ * @author Elena, Alejandro, Francisco
  *
  */
-@RestController
-@RequestMapping("/api")
+@Entity
+@Table(name = "customers")
 public class Customers {
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,17 +38,17 @@ private String Phonenumber;
 private String email;
 
 @Column (name = "press_media")
-private String press_media;
+private String pressMedia;
 
 @Column (name = "doc_identifier")
-private String doc_identifier;
+private String docIdentifier;
 
 @Column (name = "num_identifier")
-private String num_identifier;
+private String numIdentifier;
 
 @ManyToOne
 @JoinColumn(name="country_id")
-private Country countries;
+private Country country;
 
 @ManyToOne
 @JoinColumn(name = "booking_id")
@@ -59,9 +61,9 @@ public Customers(int id, String name, String phonenumber, String email, String p
 	this.name = name;
 	Phonenumber = phonenumber;
 	this.email = email;
-	this.press_media = press_media;
-	this.doc_identifier = doc_identifier;
-	this.num_identifier = num_identifier;
+	this.pressMedia = press_media;
+	this.docIdentifier = doc_identifier;
+	this.numIdentifier = num_identifier;
 	
 }
 public Customers(){}
@@ -89,30 +91,72 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
-public String getPress_media() {
-	return press_media;
-}
-public void setPress_media(String press_media) {
-	this.press_media = press_media;
-}
-public String getDoc_identifier() {
-	return doc_identifier;
-}
-public void setDoc_identifier(String doc_identifier) {
-	this.doc_identifier = doc_identifier;
-}
-public String getNum_identifier() {
-	return num_identifier;
-}
-public void setNum_identifier(String num_identifier) {
-	this.num_identifier = num_identifier;
-}
 
+/**
+ * @return the pressMedia
+ */
+public String getPressMedia() {
+	return pressMedia;
+}
+/**
+ * @param pressMedia the pressMedia to set
+ */
+public void setPressMedia(String pressMedia) {
+	this.pressMedia = pressMedia;
+}
+/**
+ * @return the docIdentifier
+ */
+public String getDocIdentifier() {
+	return docIdentifier;
+}
+/**
+ * @param docIdentifier the docIdentifier to set
+ */
+public void setDocIdentifier(String docIdentifier) {
+	this.docIdentifier = docIdentifier;
+}
+/**
+ * @return the numIdentifier
+ */
+public String getNumIdentifier() {
+	return numIdentifier;
+}
+/**
+ * @param numIdentifier the numIdentifier to set
+ */
+public void setNumIdentifier(String numIdentifier) {
+	this.numIdentifier = numIdentifier;
+}
+/**
+ * @return the country
+ */
+public Country getCountry() {
+	return country;
+}
+/**
+ * @param country the country to set
+ */
+public void setCountry(Country country) {
+	this.country = country;
+}
+/**
+ * @return the booking
+ */
+public Booking getBooking() {
+	return booking;
+}
+/**
+ * @param booking the booking to set
+ */
+public void setBooking(Booking booking) {
+	this.booking = booking;
+}
 @Override
 public String toString() {
 	return "Client [id=" + id + ", name=" + name + ", Phonenumber=" + Phonenumber + ", email=" + email
-			+ ", press_media=" + press_media + ", doc_identifier=" + doc_identifier + ", num_identifier="
-			+ num_identifier + "]";
+			+ ", press_media=" + pressMedia + ", doc_identifier=" + docIdentifier + ", num_identifier="
+			+ numIdentifier + "]";
 }
 
 

@@ -14,6 +14,8 @@ import com.safein.backend.dao.IBookingDAO;
 import com.safein.backend.dao.ICustomersDAO;
 import com.safein.backend.dao.IHandleDAO;
 import com.safein.backend.dao.IHotelsDAO;
+import com.safein.backend.dao.IRoomDAO;
+import com.safein.backend.dao.IUserDAO;
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
 import com.safein.backend.dto.Room;
@@ -72,20 +74,14 @@ public class BookingServiceImpl implements IBookingService {
 	}
 
 	@Override
-	public List<Room> listRoomsByBookingId(Long booking_id) {
+	public List<Handle> listHandlesByRoomId(Long room_id) {
 
-		List<Room> rooms = iRoomDAO.findByBooking(iBookingDAO.findById(booking_id).get());
-		List<Handle> hs = new ArrayList<>();
-
-		for (Room room : rooms) {
-			hs.addAll(iHandleDAO.findByRoom(room));
-		}
-		return hs;
+		return iHandleDAO.findByRoom(iRoomDAO.findById(room_id).get());
 	}
 
 	@Override
 	public List<Handle> listHandlesByHotelId(Long hotel_id) {
-		List<Room> rooms = iRoomDAO.findByHotel(iHotelsDAO.findById(hotel_id).get());
+		List<Room> rooms = iRoomDAO.findRoomsByHotelId(hotel_id);
 		List<Handle> hs = new ArrayList<>();
 
 		for (Room room : rooms) {
@@ -116,6 +112,18 @@ public class BookingServiceImpl implements IBookingService {
 	public List<Handle> listAllBookings() {
 		
 		return iHandleDAO.findAll();
+	}
+
+	@Override
+	public Booking getBookingById(Long id) {
+		// TODO Auto-generated method stub
+		return iBookingDAO.findById(id).get();
+	}
+
+	@Override
+	public Handle saveHandle(Handle handle) {
+		// TODO Auto-generated method stub
+		return iHandleDAO.save(handle);
 	}
 	
 	

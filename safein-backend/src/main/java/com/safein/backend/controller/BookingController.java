@@ -52,8 +52,8 @@ public class BookingController {
 	 */
 
 	@GetMapping("/booking/rooms/{rooms}")
-	public List<Room> listRoomByBookingId(@PathVariable(name = "rooms") Long id) {
-		return bookingServiceImpl.listRoomsByBookingId(id);
+	public List<Handle> listRoomByBookingId(@PathVariable(name = "rooms") Long id) {
+		return bookingServiceImpl.listHandlesByRoomId(id);
 	}
 
 	@GetMapping("/booking/hotel/{hotel}")

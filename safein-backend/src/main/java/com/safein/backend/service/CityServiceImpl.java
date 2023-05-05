@@ -6,6 +6,7 @@ import com.safein.backend.dto.City;
 import com.safein.backend.dto.Country;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.safein.backend.dao.ICityDAO;
 import com.safein.backend.dao.ICountryDAO;
@@ -13,6 +14,7 @@ import com.safein.backend.dao.ICountryDAO;
 /**
  * CityServiceImpl
  */
+@Service
 public class CityServiceImpl implements ICityService {
 
 	@Autowired

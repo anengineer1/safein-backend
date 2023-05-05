@@ -1,5 +1,7 @@
 package com.safein.backend.dao;
 
+
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,8 +13,10 @@ public interface IHotelsDAO extends JpaRepository<Hotel, Long>{
 
 	List<Hotel> findHotelsByCityId(int idcity);
 
-	List<Hotel> findHotelsBySecLvl(int seclevel);
+	List<Hotel> findHotelsBySecurityLevel(String securityLevel);
 	
-	List<Hotel> findByEnergy_suficient(boolean energy_suficient);
+	List<Hotel> findByEnergySuficient(boolean energy_suficient);
+	
+
 
 }

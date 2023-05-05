@@ -89,7 +89,7 @@ email VARCHAR(255) NOT NULL,
 address VARCHAR(255) NOT NULL,
 location POINT NOT NULL,
 security_level ENUM('Diplomatic coverage and private security', 'Private security', 'Diplomatic coverage'),
-enery_suficient BOOLEAN,
+energy_suficient BOOLEAN,
 id_city INT,
 PRIMARY KEY (id),
 CONSTRAINT city_fk FOREIGN KEY (id_city) REFERENCES cities (id)

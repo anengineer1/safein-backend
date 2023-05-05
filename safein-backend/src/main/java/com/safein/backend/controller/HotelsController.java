@@ -15,7 +15,6 @@ import com.safein.backend.dto.Hotel;
 import com.safein.backend.service.HotelsServiceImpl;
 
 @RestController
-@RequestMapping("/api")
 public class HotelsController {
 	@Autowired
 	HotelsServiceImpl hotelsServiceImpl;
@@ -36,7 +35,7 @@ public class HotelsController {
 	}
 
 	@GetMapping("/hotels/security_level/{seclevel}")
-	public List<Hotel> listHotelXSecLvl(@PathVariable(name = "seclevel") int seclevel) {
+	public List<Hotel> listHotelXSecLvl(@PathVariable(name = "seclevel") String seclevel) {
 		return hotelsServiceImpl.listHotelXSecLvl(seclevel);
 	}
 	

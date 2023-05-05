@@ -34,22 +34,22 @@ public class Room {
 	private Long id;
 
 	@Column(name = "num_people")
-	private Long num_people;
+	private Long numPeople;
 
 	@Column(name = "code")
 	private String code;
 
 	@Column(name = "price_per_night")
-	private double price_per_night;
+	private double pricePerNight;
 
 	@Column(name = "internet_type")
-	private String internet_type;
+	private String internetType;
 
 	@Column(name = "is_smoker")
-	private String is_smoker;
+	private boolean isSmoker;
 
 	@Column(name = "has_terrace")
-	private String has_terrace;
+	private boolean hasTerrace;
 
 	@OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Handle> handles;
@@ -79,16 +79,16 @@ public class Room {
 	 * @param handles
 	 * @param hotel
 	 */
-	public Room(Long id, Long num_people, String code, double price_per_night, String internet_type, String is_smoker,
-			String has_terrace, List<Handle> handles, Hotel hotel) {
+	public Room(Long id, Long numPeople, String code, double price_per_night, String internet_type, Boolean is_smoker,
+			Boolean has_terrace, List<Handle> handles, Hotel hotel) {
 		super();
 		this.id = id;
-		this.num_people = num_people;
+		this.numPeople = numPeople;
 		this.code = code;
-		this.price_per_night = price_per_night;
-		this.internet_type = internet_type;
-		this.is_smoker = is_smoker;
-		this.has_terrace = has_terrace;
+		this.pricePerNight = price_per_night;
+		this.internetType = internet_type;
+		this.isSmoker = is_smoker;
+		this.hasTerrace = has_terrace;
 		this.handles = handles;
 		this.hotel = hotel;
 	}
@@ -111,15 +111,15 @@ public class Room {
 	/**
 	 * @return the num_people
 	 */
-	public Long getNum_people() {
-		return num_people;
+	public Long getNumPeople() {
+		return numPeople;
 	}
 
 	/**
 	 * @param num_people the num_people to set
 	 */
-	public void setNum_people(Long num_people) {
-		this.num_people = num_people;
+	public void setNumPeople(Long numPeople) {
+		this.numPeople = numPeople;
 	}
 
 	/**
@@ -137,59 +137,59 @@ public class Room {
 	}
 
 	/**
-	 * @return the price_per_night
+	 * @return the pricePerNight
 	 */
-	public double getPrice_per_night() {
-		return price_per_night;
+	public double getPricePerNight() {
+		return pricePerNight;
 	}
 
 	/**
-	 * @param price_per_night the price_per_night to set
+	 * @param pricePerNight the pricePerNight to set
 	 */
-	public void setPrice_per_night(double price_per_night) {
-		this.price_per_night = price_per_night;
+	public void setPricePerNight(double pricePerNight) {
+		this.pricePerNight = pricePerNight;
 	}
 
 	/**
-	 * @return the nternet_type
+	 * @return the internetType
 	 */
-	public String getInternet_type() {
-		return internet_type;
+	public String getInternetType() {
+		return internetType;
 	}
 
 	/**
-	 * @param nternet_type the nternet_type to set
+	 * @param internetType the internetType to set
 	 */
-	public void setInternet_type(String Internet_type) {
-		this.internet_type = Internet_type;
+	public void setInternetType(String internetType) {
+		this.internetType = internetType;
 	}
 
 	/**
-	 * @return the is_smoker
+	 * @return the isSmoker
 	 */
-	public String getIs_smoker() {
-		return is_smoker;
+	public boolean isSmoker() {
+		return isSmoker;
 	}
 
 	/**
-	 * @param is_smoker the is_smoker to set
+	 * @param isSmoker the isSmoker to set
 	 */
-	public void setIs_smoker(String is_smoker) {
-		this.is_smoker = is_smoker;
+	public void setSmoker(boolean isSmoker) {
+		this.isSmoker = isSmoker;
 	}
 
 	/**
-	 * @return the has_terrace
+	 * @return the hasTerrace
 	 */
-	public String getHas_terrace() {
-		return has_terrace;
+	public boolean isHasTerrace() {
+		return hasTerrace;
 	}
 
 	/**
-	 * @param has_terrace the has_terrace to set
+	 * @param hasTerrace the hasTerrace to set
 	 */
-	public void setHas_terrace(String has_terrace) {
-		this.has_terrace = has_terrace;
+	public void setHasTerrace(boolean hasTerrace) {
+		this.hasTerrace = hasTerrace;
 	}
 
 	/**
@@ -224,8 +224,8 @@ public class Room {
 	// ----------------- Methods -----------------
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", num_people=" + num_people + ", code=" + code + ", price_per_night="
-				+ has_terrace + ", handles=" + handles + ", hotel=" + hotel + "]";
+		return "Room [id=" + id + ", num_people=" + numPeople + ", code=" + code + ", price_per_night="
+				+ hasTerrace + ", handles=" + handles + ", hotel=" + hotel + "]";
 	}
 
 }

@@ -43,26 +43,26 @@ public class RoomServiceImpl implements IRoomService {
 
 	/** Get: List all rooms By {num_people} String */
 	@Override
-	public List<Room> listRoomsByNumPersons(Long num_people) {
-		return iRoomDAO.findRoomsByNumPersons(num_people);
+	public List<Room> listRoomsByNumPersons(Long numPeople) {
+		return iRoomDAO.findRoomsByNumPeople(numPeople);
 	}
 
 	/** Get: List all rooms By {internet_type} String */
 	@Override
 	public List<Room> listRoomsByInternet(String internet_type) {
-		return iRoomDAO.findRoomsByInternet(internet_type);
+		return iRoomDAO.findRoomsByInternetType(internet_type);
 	}
 
 	/** Get: List all rooms By {is_smoker} Boolean */
 	@Override
 	public List<Room> listRoomsBySmoker(Boolean is_smoker) {
-		return iRoomDAO.findRoomsBySmoker(is_smoker);
+		return iRoomDAO.findRoomsByIsSmoker(is_smoker);
 	}
 
 	/** Get: List all rooms By has_terrace{has_terrace}Boolean */
 	@Override
 	public List<Room> listRoomsByTerrace(Boolean has_terrace) {
-		return iRoomDAO.findRoomsByTerrace(has_terrace);
+		return iRoomDAO.findRoomsByHasTerrace(has_terrace);
 	}
 
 	/**
@@ -71,12 +71,12 @@ public class RoomServiceImpl implements IRoomService {
 	 */
 
 	@Override
-	public List<Room> listByHotelIdAndNumPersons(Long hotel_id, Long num_people) {
+	public List<Room> listByHotelIdAndNumPersons(Long hotel_id, Long numPeople) {
 		List<Room> rooms_by_hotel = listRoomsByHotelId(hotel_id);
 		List<Room> hs = new ArrayList<>();
 
 		for (Room room : rooms_by_hotel) {
-			hs.addAll(iRoomDAO.findRoomsByNumPersons(num_people));
+			hs.addAll(iRoomDAO.findRoomsByNumPeople(numPeople));
 		}
 		
 		return hs;

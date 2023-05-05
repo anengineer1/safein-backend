@@ -12,11 +12,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 /**
- * @author Alejandro Jiménez Álvarez
+ *@author Elena, Alejandro, Francisco
  *
  */
 @Entity
@@ -36,15 +36,16 @@ public class Hotel {
 	private String address;
 	@Column(name= "location")
 	private String location;
-	@Column (name="securityLevel")
+	@Column (name="security_level")
 	private String securityLevel;
 	@Column (name="energy_suficient")
-	private boolean energy_suficient;
-	@OneToMany
-	@JoinColumn(name = "cities")
-	private List<City> cities;
+	private boolean energySuficient;
 	
-	public Hotel(int id, String name, String phonenumber, String email, String address, String location, String securityLevel, boolean energy_suficient, List<City> cities) {
+	@ManyToOne
+	@JoinColumn(name = "id_city")
+	private City city;
+	
+	public Hotel(int id, String name, String phonenumber, String email, String address, String location, String securityLevel, boolean energySuficient, City city) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,8 +54,8 @@ public class Hotel {
 		this.address = address;
 		this.location = location;
 		this.securityLevel = securityLevel;
-		this.energy_suficient = energy_suficient;
-		this.cities = cities;
+		this.energySuficient = energySuficient;
+		this.city = city;
 	}
 	
 	public Hotel() {
@@ -102,24 +103,24 @@ public class Hotel {
 	public void setSecurityLevel(String securityLevel) {
 		this.securityLevel = securityLevel;
 	}
-	public boolean isEnergy_suficient() {
-		return energy_suficient;
+	public boolean isEnergySuficient() {
+		return energySuficient;
 	}
-	public void setEnergy_suficient(boolean energy_suficient) {
-		this.energy_suficient = energy_suficient;
+	public void setEnergySuficient(boolean energySuficient) {
+		this.energySuficient = energySuficient;
 	}
-	public List<City> getCities() {
-		return cities;
+	public City getCities() {
+		return city;
 	}
-	public void setCities(List<City> cities) {
-		this.cities = cities;
+	public void setCities(City city) {
+		this.city = city;
 	}
 	
 	@Override
 	public String toString() {
 		return "Hotel [id=" + id + ", name=" + name + ", Phonenumber=" + Phonenumber + ", email=" + email + ", address="
 				+ address + ", location=" + location + ", securityLevel=" + securityLevel + ", energy_suficient="
-				+ energy_suficient + "]";
+				+ energySuficient + "]";
 	}
 
 	

@@ -10,10 +10,10 @@ public interface ICustomersDAO extends JpaRepository<Customers, Long> {
 
 	List<Customers> findByEmail(String mail);
 
-	List<Customers> findCustomersByNum(Long num);
+	List<Customers> findCustomersByName(Long num);
 
-	List<Customers> findCustomersByMedia(String media);
+	List<Customers> findCustomersByPressMedia(String media);
 
-	Customers findByNumAndDoctype(Long num, String doctype);
+	Customers findByNumIdentifierAndDocIdentifier(Long num, String doctype);
 
 }

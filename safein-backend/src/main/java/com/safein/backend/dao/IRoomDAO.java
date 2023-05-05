@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.safein.backend.dto.Booking;
+import com.safein.backend.dto.Handle;
 import com.safein.backend.dto.Room;
 
 
@@ -22,19 +24,21 @@ public interface IRoomDAO  extends JpaRepository<Room, Long>{
 	/**TODO:Get: List all rooms from hotel By {hotel_id} and {code}Long Long */
 	
 	/**Get: List all rooms By {num_people} String */
-	 List<Room> findRoomsByNumPersons(Long num_people); 
+	 List<Room> findRoomsByNumPeople(Long numPeople); 
 	
 	/**Get: List all rooms By {internet_type} String */
-	List<Room> findRoomsByInternet(String internet_type); 
+	List<Room> findRoomsByInternetType(String internet_type); 
 	
 	/**Get: List all rooms By {is_smoker} Boolean */
-	List<Room> findRoomsBySmoker(Boolean is_smoker); 
+	List<Room> findRoomsByIsSmoker(Boolean is_smoker); 
 	
 	/**Get: List all rooms By has_terrace{has_terrace}Boolean */
-	List<Room> findRoomsByTerrace(Boolean has_terrace); 
+	List<Room> findRoomsByHasTerrace(Boolean has_terrace); 
 	
 	/**TODO:Get: List all rooms in hotel By hotel_id{hotel_id} and num:people{num_people}Long Long */
 	
-	List<Room> findByHotelIdAndNumPersons(Long hotel_id,Long num_people);
+	List<Room> findByHotelIdAndNumPeople(Long hotel_id,Long numPeople);
+
+	List<Room> findByHandles(Handle handle);
 	
 }

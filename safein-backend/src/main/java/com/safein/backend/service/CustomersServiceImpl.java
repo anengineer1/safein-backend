@@ -3,10 +3,12 @@ package com.safein.backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.safein.backend.dao.ICustomersDAO;
 import com.safein.backend.dto.Customers;
 
+@Service
 public class CustomersServiceImpl implements ICustomersService {
 
 	@Autowired
@@ -38,7 +40,7 @@ public class CustomersServiceImpl implements ICustomersService {
 	@Override
 	public List<Customers> listCustomersByDocNum(Long num) {
 
-		return iCustomersDAO.findCustomersByNum(num);
+		return iCustomersDAO.findCustomersByName(num);
 	}
 
 	@Override
@@ -56,13 +58,13 @@ public class CustomersServiceImpl implements ICustomersService {
 	@Override
 	public List<Customers> listCustomersByMedia(String media) {
 
-		return iCustomersDAO.findCustomersByMedia(media);
+		return iCustomersDAO.findCustomersByPressMedia(media);
 	}
 
 	@Override
 	public Customers listByNumAndDoctype(Long num, String doctype) {
 
-		return iCustomersDAO.findByNumAndDoctype(num, doctype);
+		return iCustomersDAO.findByNumIdentifierAndDocIdentifier(num, doctype);
 	}
 
 }

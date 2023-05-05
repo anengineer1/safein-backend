@@ -54,12 +54,12 @@ public class CustomersController {
 
 		Customers customers_selected = customersServiceImpl.customersById(id);
 
-		customers_selected.setDoc_identifier(customers.getDoc_identifier());
+		customers_selected.setDocIdentifier(customers.getDocIdentifier());
 		customers_selected.setEmail(customers.getEmail());
 		customers_selected.setName(customers.getName());
 		customers_selected.setPhonenumber(customers.getPhonenumber());
-		customers_selected.setNum_identifier(customers.getNum_identifier());
-		customers_selected.setPress_media(customers.getPress_media());
+		customers_selected.setNumIdentifier(customers.getNumIdentifier());
+		customers_selected.setPressMedia(customers.getPressMedia());
 
 		return customersServiceImpl.updateCustomer(customers_selected);
 	}

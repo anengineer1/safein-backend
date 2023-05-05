@@ -37,7 +37,7 @@ public interface IBookingService {
 	public List<Handle> listBookingsByCustomerId(Long customer_id);
 
 	// bookings/rooms user admin (Llamada desde handles) GET /bookings/rooms/{id}
-	public List<Room> listRoomsByBookingId(Long booking_id);
+	public List<Handle> listHandlesByRoomId(Long booking_id);
 
 	// (Handles) GET /bookings/hotel/{id} (Handles) GET /bookings rol user admin
 	public List<Handle> listHandlesByHotelId(Long hotel_id);

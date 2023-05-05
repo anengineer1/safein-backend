@@ -6,12 +6,14 @@ import com.safein.backend.dao.ICountryDAO;
 import com.safein.backend.dto.Country;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * CountryServiceImpl
  * 
  * @author Elena, Alejandro, Francisco
  */
+@Service
 public class CountryServiceImpl implements ICountryService {
 
 	@Autowired
