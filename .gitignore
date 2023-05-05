@@ -4,3 +4,7 @@ safein-backend/.mvn/wrapper/maven-wrapper.jar
 safein-backend/.mvn/wrapper/maven-wrapper.properties
 safein-backend/.mvn/wrapper/maven-wrapper.jar
 safein-backend/.mvn/wrapper/maven-wrapper.jar
+safein-backend/.classpath
+safein-backend/.project
+safein-backend/target/
+safein-backend/.settings/
