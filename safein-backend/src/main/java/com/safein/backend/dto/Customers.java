@@ -3,6 +3,8 @@
  */
 package com.safein.backend.dto;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 /**
@@ -50,9 +53,8 @@ private String numIdentifier;
 @JoinColumn(name="country_id")
 private Country country;
 
-@ManyToOne
-@JoinColumn(name = "booking_id")
-private Booking booking;
+@OneToMany(mappedBy = "customers", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+private List<Booking> booking;
 
 public Customers(int id, String name, String phonenumber, String email, String press_media, String doc_identifier,
 		String num_identifier) {
@@ -143,13 +145,13 @@ public void setCountry(Country country) {
 /**
  * @return the booking
  */
-public Booking getBooking() {
+public List<Booking> getBooking() {
 	return booking;
 }
 /**
  * @param booking the booking to set
  */
-public void setBooking(Booking booking) {
+public void setBooking(List<Booking> booking) {
 	this.booking = booking;
 }
 @Override
