@@ -38,7 +38,7 @@ public class UserServiceImpl implements IUserService {
 	/**Get: Read info about an user */
 	@Override
 	public User getUserById(Long id) {
-
+		
 		return iUserDAO.findById(id).get();
 	}
 
@@ -52,5 +52,6 @@ public class UserServiceImpl implements IUserService {
 	/** Delete: an user*/
 	@Override
 	public void deleteUser(Long id) {
+		iUserDAO.deleteById(id);
 	}
 }
