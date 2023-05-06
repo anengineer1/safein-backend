@@ -1,15 +1,6 @@
 create database if not exists safein_test;
 use safein_test;
 
-/* Users Table */
-CREATE TABLE IF NOT EXISTS users(
-id INT NOT NULL AUTO_INCREMENT,
-username varchar(100) NOT NULL UNIQUE,
-password varchar (255) NOT NULL,
-nomApels varchar(255) NOT NULL,
-email varchar(255) NOT NULL,
-PRIMARY KEY (id)create database if not exists safein_test;
-use safein_test;
 
 /* Users Table */
 CREATE TABLE IF NOT EXISTS users(
@@ -151,26 +142,7 @@ INSERT INTO handles (arrival_date, departure_date, booking_id, room_id) VALUES (
 INSERT INTO handles (arrival_date, departure_date, booking_id, room_id) VALUES ('2023-07-18 12:00:00', '2023-07-15 12:00:00', 3, 2);
 INSERT INTO handles (arrival_date, departure_date, booking_id, room_id) VALUES ('2023-06-17 12:00:00', '2023-08-14 12:00:00', 1, 3);
 
-);
 
-INSERT INTO users (username,password,nomApels,email) value ("marraya","Ma@ara","Maria Raices","mrraynet@gmail.com");
-INSERT INTO users (username,password,nomApels,email) value ("AntAn","AnA#$","Antonio Andres","antmannn@gmail.com");
-INSERT INTO users (username,password,nomApels,email) values ("NicoGico","Ni#$Gii","Nicolas Gimenez","nicogi@gmail.com");
-
-/* Countries Table */
-CREATE TABLE IF NOT EXISTS countries (
-id INT NOT NULL AUTO_INCREMENT,
-country_code varchar(2) NOT NULL UNIQUE,
-country_name varchar(255) NOT NULL,
-latitude DOUBLE NOT NULL,
-longitude DOUBLE NOT NULL,
-situation ENUM ("Tension Between Countries","Risk of war","War","High crime","Political instability","Natural Disaster") NOT NULL,
-PRIMARY KEY (id)
-);
-
-INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('UA',"Ukraine", 49.0000000, 32.0000000,'War');
-INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('SO',"Somalia", 10.0000000, 49.0000000,'War');
-INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('ID',"Indonesia", -5.0000000, 120.0000000,'Natural Disaster');
 
 /* Customers Table */
 CREATE TABLE IF NOT EXISTS customers(
@@ -246,25 +218,6 @@ INSERT INTO hotels (name, phonenumber, email, address, latitude, longitude, secu
 ('Hotel Serpiente Feliz' ,'+34777777777', 'redestro@gmail.com', 'Uburubao street 5', 37.7749, -100.4194, 'Private security', true, 2),
 ('Hotel Me Da Lo Mismo', '+34444444444', 'rrrrrrrrr@gmail.com', 'Shishao 5', 37.7749, -100.4194, 'Private security', true, 3);
 
-
-/* Rooms Table */
-CREATE TABLE IF NOT EXISTS rooms (
-id INT NOT NULL AUTO_INCREMENT,
-room_code CHAR(3) NOT NULL UNIQUE,
-price_per_night FLOAT NOT NULL,
-num_people INT NOT NULL,
-internet_type ENUM('Fiber', 'Cable', 'Satellite') NOT NULL,
-is_smoker BOOLEAN NOT NULL,
-has_terrace BOOLEAN NOT NULL,
-hotel_id INT,
-PRIMARY KEY (id),
-CONSTRAINT hotel_fk FOREIGN KEY (hotel_id) REFERENCES hotels (id)
-);
-
-INSERT INTO rooms (room_code, price_per_night, num_people, internet_type, is_smoker, has_terrace, hotel_id) VALUES
-('103', 59.99, 1, 'Fiber', false, true, 1),
-('204', 59.99, 1, 'Fiber', false, true, 1),
-('302', 59.99, 3, 'Fiber', false, true, 1);
 
 /* Handles Table */
 CREATE TABLE IF NOT EXISTS handles (
