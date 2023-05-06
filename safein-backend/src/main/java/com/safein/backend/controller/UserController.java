@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.User;
@@ -24,7 +24,6 @@ import com.safein.backend.service.UserServiceImpl;
  */
 
 @RestController
-@RequestMapping("/")
 public class UserController {
 
 	@Autowired
@@ -45,12 +44,12 @@ public class UserController {
 
 	/** Get: Read info about an user */
 	@GetMapping("/users/{id}")
-	public User getUserById(Long id) {
+	public User getUserById(@PathVariable(name = "id") Long id) {
 		return userServiceImpl.getUserById(id);
 	}
 
 	/** Update: an user */
-	@PutMapping("/piezas/{id}")
+	@PutMapping("/users/{id}")
 	public User updateUser(@PathVariable(name = "id") Long id, @RequestBody User user) {
 
 		User user_selected = new User();

@@ -39,4 +39,8 @@ public interface IRoomService {
 	 * num:people{num_people}Long Long
 	 */
 	public List<Room> listByHotelIdAndNumPersons(Long hotel_id,Long num_people);
+
+	/** Create a room */
+	public Room saveRoom(Room room);
+
 }
