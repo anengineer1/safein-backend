@@ -34,4 +34,14 @@ public class CountryServiceImpl implements ICountryService {
 		return iCountryDAO.findByCountryCode(country_code);
 	}
 
+	@Override
+	public Country saveCountry(Country country) {
+		return iCountryDAO.save(country);
+	}
+
+	@Override
+	public void deleteCountry(long id) {
+		iCountryDAO.deleteById(id);
+	}
+
 }
