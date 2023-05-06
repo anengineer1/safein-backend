@@ -41,7 +41,7 @@ public class User {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "nomApels")
+	@Column(name = "nomapels")
 	private String nomApels;
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

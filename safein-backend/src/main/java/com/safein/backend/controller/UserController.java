@@ -50,7 +50,7 @@ public class UserController {
 	}
 
 	/** Update: an user */
-	@PutMapping("/piezas/{id}")
+	@PutMapping("/users/{id}")
 	public User updateUser(@PathVariable(name = "id") Long id, @RequestBody User user) {
 
 		User user_selected = new User();

@@ -8,3 +8,5 @@ safein-backend/.classpath
 safein-backend/.project
 safein-backend/target/
 safein-backend/.settings/
+safein-backend/src/main/resources/application.properties
+safein-backend/src/main/resources/application.properties
