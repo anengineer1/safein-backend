@@ -46,7 +46,7 @@ public class RoomController {
 		return iRoomServiceImpl.listRoomsByHotelId(hotel_id);
 	}
 
-	/** Get: List all rooms By {num_people} String */
+	/** Get: List all rooms By {num_people} long */
 	@GetMapping("/rooms/numpeople/{num_people}")
 	public List<Room> listRoomsByNumPersons(@PathVariable(name = "num_people") Long num_people) {
 		return iRoomServiceImpl.listRoomsByNumPersons(num_people);
@@ -75,7 +75,7 @@ public class RoomController {
 	 * num:people{num_people}Long Long
 	 */
 	@GetMapping("/rooms/{hotel_id}/numpers/{num_people}")
-	public List<Room> listRoomsByHotelIdAndNumPeople(@PathVariable(name = "is_smoker")Long hotel_id, @PathVariable(name = "num_people")Long num_people){
+	public List<Room> listRoomsByHotelIdAndNumPeople(@PathVariable(name = "hotel_id")Long hotel_id, @PathVariable(name = "num_people")Long num_people){
 		return iRoomServiceImpl.listByHotelIdAndNumPersons(hotel_id, num_people);
 	}
 	
