@@ -29,7 +29,7 @@ public class Hotel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "name")
 	private String name;
@@ -92,11 +92,11 @@ public class Hotel {
 	public Hotel() {
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -146,12 +146,7 @@ public class Hotel {
 		return longitude;
 	}
 
-	/**
-	 * @return the city
-	 */
-	public City getCity() {
-		return city;
-	}
+	
 
 	/**
 	 * @param latitude the latitude to set
@@ -167,13 +162,7 @@ public class Hotel {
 		this.longitude = longitude;
 	}
 
-	/**
-	 * @param city the city to set
-	 */
-	public void setCity(City city) {
-		this.city = city;
-	}
-
+	
 	public String getSecurityLevel() {
 		return securityLevel;
 	}
@@ -190,15 +179,22 @@ public class Hotel {
 		this.energySuficient = energySuficient;
 	}
 
-	public City getCities() {
+	
+	
+
+	/**
+	 * @return the city
+	 */
+	public City getCity() {
 		return city;
 	}
 
-	public void setCities(City city) {
+	/**
+	 * @param city the city to set
+	 */
+	public void setCity(City city) {
 		this.city = city;
 	}
-	
-	
 
 	/**
 	 * @return the rooms

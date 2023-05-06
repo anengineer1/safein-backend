@@ -41,10 +41,10 @@ public class Customers {
 	@Column(name = "press_media")
 	private String pressMedia;
 
-	@Column(name = "doc_identifier")
+	@Column(name = "doc_identificator")
 	private String docIdentifier;
 
-	@Column(name = "num_identifier")
+	@Column(name = "num_identificator")
 	private String numIdentifier;
 
 	@ManyToOne

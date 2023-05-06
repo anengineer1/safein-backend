@@ -38,8 +38,8 @@ public class HotelsController {
 		return hotelsServiceImpl.listHotelXSecLvl(seclevel);
 	}
 	
-	@GetMapping("/hotels/energy_suf/{ensuf}")
-	public List<Hotel> listHotelsByEngSuf(@PathVariable(name = "en_suf") boolean ensuf){
+	@GetMapping("/hotels/energy_suficient/{energy_suficient}")
+	public List<Hotel> listHotelsByEngSuf(@PathVariable(name = "energy_suficient") boolean ensuf){
 		
 		return hotelsServiceImpl.listHotelByEnSuf(ensuf);
 	}
@@ -52,24 +52,23 @@ public class HotelsController {
 	@PutMapping("/hotels/{id}")
 	public Hotel updateHotel(@PathVariable(name = "id") Long id, @RequestBody Hotel hotels) {
 
-		Hotel hotels_actualizado = new Hotel();
 
 		Hotel hotels_seleccionado = hotelsServiceImpl.hotelsById(id);
 
 		hotels_seleccionado.setAddress(hotels.getAddress());
-
-		hotels_seleccionado.setCities(hotels.getCities());
+		hotels_seleccionado.setName(hotels.getName());
+		hotels_seleccionado.setPhonenumber(hotels.getPhonenumber());
+		hotels_seleccionado.setEnergySuficient(hotels.isEnergySuficient());
+		hotels_seleccionado.setCity(hotels.getCity());
 		hotels_seleccionado.setEmail(hotels.getEmail());
 		hotels_seleccionado.setSecurityLevel(hotels.getSecurityLevel());
 		
 		hotels_seleccionado.setLatitude(hotels.getLatitude());
 		hotels_seleccionado.setLongitude(hotels.getLongitude());
 
-		hotels_seleccionado = hotelsServiceImpl.updateHotels(hotels_seleccionado);
 
-		System.out.println("El empleado actualizado es: " + hotels_actualizado);
 
-		return hotels_actualizado;
+		return hotelsServiceImpl.updateHotels(hotels_seleccionado);
 	}
 
 }
