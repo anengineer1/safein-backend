@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Room;
-import com.safein.backend.dto.User;
 import com.safein.backend.service.RoomServiceImpl;
 
 /**
@@ -42,7 +41,7 @@ public class RoomController {
 	}
 
 	/** Get: List all rooms by Hotel ID */
-	@GetMapping("/rooms/hotels/{id}") 
+	@GetMapping("/rooms/hotels/{hotel_id}") 
 	public List<Room> listRoomsByHotelId(@PathVariable(name = "hotel_id")Long hotel_id) {
 		return iRoomServiceImpl.listRoomsByHotelId(hotel_id);
 	}
