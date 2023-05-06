@@ -8,10 +8,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Room;
+import com.safein.backend.dto.User;
 import com.safein.backend.service.RoomServiceImpl;
 
 /**
@@ -68,12 +72,37 @@ public class RoomController {
 	}
 
 	/**
-	 * TODO:Get: List all rooms in hotel By hotel_id{hotel_id} and
+	 * List all rooms in hotel By hotel_id{hotel_id} and
 	 * num:people{num_people}Long Long
 	 */
 	@GetMapping("/rooms/{hotel_id}/numpers/{num_people}")
 	public List<Room> listRoomsByHotelIdAndNumPeople(@PathVariable(name = "is_smoker")Long hotel_id, @PathVariable(name = "num_people")Long num_people){
 		return iRoomServiceImpl.listByHotelIdAndNumPersons(hotel_id, num_people);
 	}
+	
+	/*Create a room*/
+	@PostMapping("/rooms")
+	public Room saveRoom(@RequestBody Room room) {
 
+		return iRoomServiceImpl.saveRoom(room);
+	}
+
+	/** Update: an room */
+	@PutMapping("/rooms/{id}")
+	public Room updateRoom(@PathVariable(name = "id") Long id, @RequestBody Room room) {
+
+		Room room_selected = new Room();
+
+		room_selected = iRoomServiceImpl.getRoomById(id);
+		room_selected.setNumPeople(room.getNumPeople());
+		room_selected.setCode(room.getCode());
+		room_selected.setHasTerrace(room.isHasTerrace());
+		room_selected.setPricePerNight(room.getPricePerNight());
+		room_selected.setInternetType(room.getInternetType());
+		room_selected.setSmoker(room.isSmoker());
+		room_selected.setHandles(room.getHandles());
+		room_selected.setHotel(room.getHotel());
+
+		return iRoomServiceImpl.updateRoom(room_selected);
+	}
 }

@@ -80,4 +80,15 @@ public class RoomServiceImpl implements IRoomService {
 		
 		return hs;
 	}
+
+	/* Create a room*/
+	@Override
+	public Room saveRoom(Room room) {
+		return iRoomDAO.save(room);
+	}
+
+	public Room updateRoom(Room room) {
+		
+		return iRoomDAO.save(room);
+	}
 }
