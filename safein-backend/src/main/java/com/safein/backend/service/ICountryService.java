@@ -33,4 +33,19 @@ public interface ICountryService {
 	 * @return
 	 */
 	public Country getCountryByCountryCode(String country_code); // Get by Country code
+
+	/**
+	 * save a Country
+	 * 
+	 * @param country (Country)
+	 * @return Country
+	 */
+	public Country saveCountry(Country country); // POST PUT
+
+	/**
+	 * delete a Country given its internal id
+	 * 
+	 * @param country
+	 */
+	public void deleteCountry(long id); // DELETE
 }

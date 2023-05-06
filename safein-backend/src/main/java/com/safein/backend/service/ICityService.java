@@ -48,7 +48,7 @@ public interface ICityService {
 	 * @return List of cities
 	 */
 	public List<City> listCitiesByCountry(Country country); // List every city in the same country given the internal
-																// numerical code
+															// numerical code
 
 	/**
 	 * 
@@ -59,4 +59,18 @@ public interface ICityService {
 	 */
 	public List<City> listCitiesByCountryCode(String country_code); // List every city in the same country
 
+	/**
+	 * Save a city
+	 * 
+	 * @param city
+	 * @return the city introduced
+	 */
+	public City saveCity(City city); // POST PUT
+
+	/**
+	 * Delete a city given the internal id
+	 * 
+	 * @param id
+	 */
+	public void deleteCity(long id); // DELETE
 }

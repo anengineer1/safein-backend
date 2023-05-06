@@ -48,4 +48,14 @@ public class CityServiceImpl implements ICityService {
 		return iCityDAO.findByCountry(iCountryDAO.findByCountryCode(country_code));
 	}
 
+	@Override
+	public City saveCity(City city) {
+		return iCityDAO.save(city);
+	}
+
+	@Override
+	public void deleteCity(long id) {
+		iCityDAO.deleteById(id);
+	}
+
 }
