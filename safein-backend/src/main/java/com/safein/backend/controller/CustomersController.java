@@ -66,7 +66,7 @@ public class CustomersController {
 
 	@DeleteMapping("/customers/{id}")
 	public String deleteCustomer(@PathVariable(name = "id") Long id) {
-		customersServiceImpl.deleteCostumerById(id);
+		customersServiceImpl.deleteCustomerById(id);
 		return "User deleted.";
 	}
 }
