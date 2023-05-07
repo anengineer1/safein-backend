@@ -26,14 +26,24 @@ public class BookingController {
 	 * @Autowired HandleServiceImpl handlesServiceImpl;
 	 */
 
-	@GetMapping("/booking")
-	public List<Handle> listBookings() {
-		return bookingServiceImpl.listAllBookings();
+	@GetMapping("/booking/handles")
+	public List<Handle> listHandles() {
+		return bookingServiceImpl.listAllHandles();
 	}
 
 	@GetMapping("/booking/{id}")
-	public Handle listBookingXID(@PathVariable(name = "id") Long id) {
-		return bookingServiceImpl.listBookingsByBookingId(id);
+	public Booking listBookingXID(@PathVariable(name = "id") Long id) {
+		return bookingServiceImpl.getBookingById(id);
+	}
+	
+	@GetMapping("/booking")
+	public List<Booking> listBookings() {
+		return bookingServiceImpl.listAllBookings();
+	}
+	
+	@GetMapping("/booking/handle/{id}")
+	public Handle listHandleXID(@PathVariable(name = "id") Long id) {
+		return bookingServiceImpl.getHandleById(id);
 	}
 
 	@GetMapping("/booking/user/{users}")
@@ -67,6 +77,26 @@ public class BookingController {
 	public Booking createBooking(@RequestBody Booking booking) {
 		return bookingServiceImpl.saveBooking(booking);
 	}
+	
+	@PostMapping("/handle")
+	public Handle createBooking(@RequestBody Handle handle) {
+		return bookingServiceImpl.saveHandle(handle);
+	}
+	
+	@PutMapping("/handle/{id}")
+	public Handle updateHandle(@PathVariable(name = "id") Long id, @RequestBody Handle handle) {
+
+		Handle booking_selected = bookingServiceImpl.getHandleById(id);
+
+		booking_selected.setDepartureDate(handle.getDepartureDate());
+		booking_selected.setArrivalDate(handle.getArrivalDate());
+		booking_selected.setRoom(handle.getRoom());
+		booking_selected.setBooking(handle.getBooking());
+		
+		return bookingServiceImpl.saveHandle(booking_selected);
+	}
+	
+	
 
 	@PutMapping("/booking/{id}")
 	public Booking updateBooking(@PathVariable(name = "id") Long id, @RequestBody Booking booking) {
@@ -86,6 +116,12 @@ public class BookingController {
 	@DeleteMapping("/booking/{id}")
 	public String eliminarBooking(@PathVariable(name = "id") Long id) {
 		bookingServiceImpl.deleteBookingById(id);
+		return "Booking deleted.";
+	}
+	
+	@DeleteMapping("/booking/handle/{id}")
+	public String eliminarHandle(@PathVariable(name = "id") Long id) {
+		bookingServiceImpl.deleteHandleById(id);
 		return "Booking deleted.";
 	}
 }

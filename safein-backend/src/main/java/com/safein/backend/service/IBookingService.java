@@ -15,8 +15,11 @@ import com.safein.backend.dto.Room;
  */
 public interface IBookingService {
 	
+	//List All Handles
+	public List<Handle> listAllHandles();
+	
 	//List All Bookings
-	public List<Handle> listAllBookings();
+	public List<Booking> listAllBookings();
 	
 	//Get Booking By Booking_id
 	public Booking getBookingById(Long id);
@@ -41,10 +44,15 @@ public interface IBookingService {
 
 	// (Handles) GET /bookings/hotel/{id} (Handles) GET /bookings rol user admin
 	public List<Handle> listHandlesByHotelId(Long hotel_id);
+	
+	public Handle getHandleById(Long id);
 
 	// PUT /bookings/{id} user admin
 	public Booking updateBooking(Booking booking);
 
 	// DELETE /bookings/{id}
 	public void deleteBookingById(Long booking_id);
+	
+	public void deleteHandleById(Long handle_id);
+	
 }

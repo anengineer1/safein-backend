@@ -108,7 +108,7 @@ public class BookingServiceImpl implements IBookingService {
 	}
 
 	@Override
-	public List<Handle> listAllBookings() {
+	public List<Handle> listAllHandles() {
 		
 		return iHandleDAO.findAll();
 	}
@@ -124,7 +124,21 @@ public class BookingServiceImpl implements IBookingService {
 		// TODO Auto-generated method stub
 		return iHandleDAO.save(handle);
 	}
-	
-	
+
+	@Override
+	public Handle getHandleById(Long id) {
+		return iHandleDAO.findById(id).get();
+	}
+
+	@Override
+	public List<Booking> listAllBookings() {
+		return iBookingDAO.findAll();
+	}
+
+	@Override
+	public void deleteHandleById(Long handle_id) {
+		iHandleDAO.deleteById(handle_id);
+		
+	}
 
 }
