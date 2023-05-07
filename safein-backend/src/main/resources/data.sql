@@ -14,7 +14,7 @@ PRIMARY KEY (id)
 
 INSERT INTO susers (username,password,nomapels,email) value ("marraya","Ma@ara","Maria Raices","mrraynet@gmail.com");
 INSERT INTO susers (username,password,nomapels,email) value ("AntAn","AnA#$","Antonio Andres","antmannn@gmail.com");
-INSERT INTO users (username,password,nomapels,email) values ("NicoGico","Ni#$Gii","Nicolas Gimenez","nicogi@gmail.com");
+INSERT INTO susers (username,password,nomapels,email) values ("NicoGico","Ni#$Gii","Nicolas Gimenez","nicogi@gmail.com");
 
 /* Countries Table */
 CREATE TABLE IF NOT EXISTS countries (
@@ -60,13 +60,13 @@ CREATE TABLE IF NOT EXISTS bookings (
   suser_id int,  
   primary key (id),
   constraint customer_ibfk_1 FOREIGN KEY (customer_id) REFERENCES customers(id),
-  constraint user_ibfk_1 FOREIGN KEY (suser_id) REFERENCES susers(id)
+  constraint suser_ibfk_1 FOREIGN KEY (suser_id) REFERENCES susers(id)
 );
 
-INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, user_id) VALUES (250.00, 1, true, false, 1, 1);
-INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, user_id) VALUES (351.12, 1, false, true, 2, 2);
-INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, user_id) VALUES (454.9, 2, true, false, 3, 3);
-INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, user_id) VALUES (42.365, 1, false, true, 1, 2);
+INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, suser_id) VALUES (250.00, 1, true, false, 1, 1);
+INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, suser_id) VALUES (351.12, 1, false, true, 2, 2);
+INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, suser_id) VALUES (454.9, 2, true, false, 3, 3);
+INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, suser_id) VALUES (42.365, 1, false, true, 1, 2);
 
 /* Cities Table */
 CREATE TABLE IF NOT EXISTS cities (
@@ -83,25 +83,6 @@ CONSTRAINT country_fk FOREIGN KEY (id_country) REFERENCES countries (id)
 INSERT INTO cities (latitude, longitude, name, id_country) VALUES (37.7749, -122.4194, 'Kirtze', 1);
 INSERT INTO cities (latitude, longitude, name, id_country) VALUES (37.7749, -12.4194, 'Uowe', 2);
 INSERT INTO cities (latitude, longitude, name, id_country) VALUES (38.7749, -122.4194, 'Roj', 3);
-
-/* Rooms Table */
-CREATE TABLE IF NOT EXISTS rooms (
-id INT NOT NULL AUTO_INCREMENT,
-room_code CHAR(3) NOT NULL UNIQUE,
-price_per_night FLOAT NOT NULL,
-num_people INT NOT NULL,
-internet_type ENUM('Fiber', 'Cable', 'Satellite') NOT NULL,
-is_smoker BOOLEAN NOT NULL,
-has_terrace BOOLEAN NOT NULL,
-hotel_id INT,
-PRIMARY KEY (id),
-CONSTRAINT hotel_fk FOREIGN KEY (hotel_id) REFERENCES hotels (id)
-);
-
-INSERT INTO rooms (room_code, price_per_night, num_people, internet_type, is_smoker, has_terrace, hotel_id) VALUES
-('103', 59.99, 1, 'Fiber', false, true, 1),
-('204', 59.99, 1, 'Fiber', false, true, 1),
-('302', 59.99, 3, 'Fiber', false, true, 1);
 
 
 /* Hotels Table */
@@ -123,6 +104,27 @@ INSERT INTO hotels (name, phonenumber, email, address, latitude, longitude, secu
 ('Hotel Palace' ,'+34555555555', 'reboca@gmail.com', 'Arbeitzer street 5', 37.7749, -122.4194, 'Diplomatic coverage and private security', true, 1),
 ('Hotel Serpiente Feliz' ,'+34777777777', 'redestro@gmail.com', 'Uburubao street 5', 37.7749, -100.4194, 'Private security', true, 2),
 ('Hotel Me Da Lo Mismo', '+34444444444', 'rrrrrrrrr@gmail.com', 'Shishao 5', 37.7749, -100.4194, 'Private security', true, 3);
+
+/* Rooms Table */
+CREATE TABLE IF NOT EXISTS rooms (
+id INT NOT NULL AUTO_INCREMENT,
+room_code CHAR(3) NOT NULL UNIQUE,
+price_per_night FLOAT NOT NULL,
+num_people INT NOT NULL,
+internet_type ENUM('Fiber', 'Cable', 'Satellite') NOT NULL,
+is_smoker BOOLEAN NOT NULL,
+has_terrace BOOLEAN NOT NULL,
+hotel_id INT,
+PRIMARY KEY (id),
+CONSTRAINT hotel_fk FOREIGN KEY (hotel_id) REFERENCES hotels (id)
+);
+
+INSERT INTO rooms (room_code, price_per_night, num_people, internet_type, is_smoker, has_terrace, hotel_id) VALUES
+('103', 59.99, 1, 'Fiber', false, true, 1),
+('204', 59.99, 1, 'Fiber', false, true, 1),
+('302', 59.99, 3, 'Fiber', false, true, 1);
+
+
 
 
 /* Handles Table */

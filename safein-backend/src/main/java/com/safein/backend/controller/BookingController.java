@@ -77,7 +77,7 @@ public class BookingController {
 		booking_selected.setNumPeople(booking.getNumPeople());
 		booking_selected.setPayed(booking.isPayed());
 		booking_selected.setPendingPay(booking.isPendingPay());
-		booking_selected.setUser(booking.getUser());
+		booking_selected.setSUser(booking.getSUser());
 		booking_selected.setCustomers(booking.getCustomers());
 		
 		return bookingServiceImpl.updateBooking(booking_selected);

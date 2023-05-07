@@ -49,8 +49,8 @@ public class Booking {
 	private Customers customers;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private SUser user;
+	@JoinColumn(name = "suser_id")
+	private SUser suser;
 
 	@OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Handle> handles;
@@ -80,7 +80,7 @@ public class Booking {
 		this.isPayed = isPayed;
 		this.isPendingPay = isPendingPay;
 		this.customers = customers;
-		this.user = user;
+		this.suser = user;
 		this.handles = handles;
 	}
 
@@ -143,8 +143,8 @@ public class Booking {
 	 * 
 	 * @param user (User)
 	 */
-	public void setUser(SUser user) {
-		this.user = user;
+	public void setSUser(SUser suser) {
+		this.suser = suser;
 	}
 
 	/**
@@ -215,8 +215,8 @@ public class Booking {
 	 * 
 	 * @return (User)
 	 */
-	public SUser getUser() {
-		return user;
+	public SUser getSUser() {
+		return suser;
 	}
 
 	/**
@@ -236,7 +236,7 @@ public class Booking {
 	public String toString() {
 		return "Booking [amount=" + amount + ", customers=" + customers + ", handles=" + handles + ", id=" + id
 				+ ", isPayed=" + isPayed + ", isPendingPay=" + isPendingPay + ", numPeople=" + numPeople + ", user="
-				+ user + "]";
+				+ suser + "]";
 	}
 
 }
