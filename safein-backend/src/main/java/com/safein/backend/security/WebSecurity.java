@@ -59,6 +59,12 @@ public class WebSecurity {
          .authorizeHttpRequests()
              .requestMatchers(HttpMethod.POST, "/register").permitAll()
              .requestMatchers(HttpMethod.POST, "/login").permitAll()
+             .requestMatchers(HttpMethod.GET, "/countries").hasAnyAuthority("admin", "user")
+             .requestMatchers(HttpMethod.GET, "/countries/id/**").hasAnyAuthority("admin", "user")
+             .requestMatchers(HttpMethod.GET, "/countries/countrycode/**").hasAnyAuthority("admin", "user")
+             .requestMatchers(HttpMethod.POST, "/countries").hasAnyAuthority("admin")
+             .requestMatchers(HttpMethod.PUT, "/countries").hasAnyAuthority("admin")
+             .requestMatchers(HttpMethod.POST, "/countries/**").hasAnyAuthority("admin")
              .anyRequest().authenticated()
              .and()
              .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
