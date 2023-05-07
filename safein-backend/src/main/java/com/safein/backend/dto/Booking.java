@@ -50,7 +50,7 @@ public class Booking {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User user;
+	private SUser user;
 
 	@OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Handle> handles;
@@ -73,7 +73,7 @@ public class Booking {
 	 * @param user         (User)
 	 * @param handles
 	 */
-	public Booking(double amount, int numPeople, boolean isPayed, boolean isPendingPay, Customers customers, User user,
+	public Booking(double amount, int numPeople, boolean isPayed, boolean isPendingPay, Customers customers, SUser user,
 			List<Handle> handles) {
 		this.amount = amount;
 		this.numPeople = numPeople;
@@ -143,7 +143,7 @@ public class Booking {
 	 * 
 	 * @param user (User)
 	 */
-	public void setUser(User user) {
+	public void setUser(SUser user) {
 		this.user = user;
 	}
 
@@ -215,7 +215,7 @@ public class Booking {
 	 * 
 	 * @return (User)
 	 */
-	public User getUser() {
+	public SUser getUser() {
 		return user;
 	}
 

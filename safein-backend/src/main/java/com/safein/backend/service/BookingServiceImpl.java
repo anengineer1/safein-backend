@@ -14,7 +14,7 @@ import com.safein.backend.dao.ICustomersDAO;
 import com.safein.backend.dao.IHandleDAO;
 import com.safein.backend.dao.IHotelsDAO;
 import com.safein.backend.dao.IRoomDAO;
-import com.safein.backend.dao.IUserDAO;
+import com.safein.backend.dao.ISUserDAO;
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
 import com.safein.backend.dto.Room;
@@ -31,7 +31,7 @@ public class BookingServiceImpl implements IBookingService {
 	@Autowired
 	IHandleDAO iHandleDAO;
 	@Autowired
-	IUserDAO iUserDAO;
+	ISUserDAO iUserDAO;
 	@Autowired
 	ICustomersDAO iCustomersDAO;
 	@Autowired

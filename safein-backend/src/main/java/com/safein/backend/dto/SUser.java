@@ -23,8 +23,8 @@ import jakarta.persistence.Table;
  */
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "susers")
+public class SUser {
 
 	// ----------------- Atributes -----------------
 	@Id
@@ -51,7 +51,7 @@ public class User {
 	/**
 	 * Default Constructor
 	 */
-	public User() {
+	public SUser() {
 
 	}
 
@@ -65,7 +65,7 @@ public class User {
 	 * @param nomApels
 	 * @param booking
 	 */
-	public User(Long id, String username, String password, String email, String nomApels, List<Booking> bookings) {
+	public SUser(Long id, String username, String password, String email, String nomApels, List<Booking> bookings) {
 		super();
 		this.id = id;
 		this.username = username;

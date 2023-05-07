@@ -8,8 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.safein.backend.dao.IUserDAO;
-import com.safein.backend.dto.User;
+import com.safein.backend.dao.ISUserDAO;
+import com.safein.backend.dto.SUser;
 
 /**
  * @author Elena, Alejandro, Francisco
@@ -17,34 +17,34 @@ import com.safein.backend.dto.User;
  */
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class SUserServiceImpl implements ISUserService {
 	@Autowired
-	IUserDAO iUserDAO;
+	ISUserDAO iUserDAO;
 
 	 /**Get: List all users */
 	@Override
-	public List<User> listUsers() {
+	public List<SUser> listUsers() {
 
 		return iUserDAO.findAll();
 	}
 
 	 /**Create: Save an user */
 	@Override
-	public User saveUser(User user) {
+	public SUser saveUser(SUser user) {
 
 		return iUserDAO.save(user);
 	}
 
 	/**Get: Read info about an user */
 	@Override
-	public User getUserById(Long id) {
+	public SUser getUserById(Long id) {
 		
 		return iUserDAO.findById(id).get();
 	}
 
 	/**Update: an user */
 	@Override
-	public User updateUser(User user) {
+	public SUser updateUser(SUser user) {
 
 		return iUserDAO.save(user);
 	}
