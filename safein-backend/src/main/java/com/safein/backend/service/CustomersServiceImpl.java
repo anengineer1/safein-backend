@@ -32,7 +32,7 @@ public class CustomersServiceImpl implements ICustomersService {
 		return iCustomersDAO.save(customers);
 	}
 
-	public void deleteCostumerById(Long id) {
+	public void deleteCustomerById(Long id) {
 
 		iCustomersDAO.deleteById(id);
 	}

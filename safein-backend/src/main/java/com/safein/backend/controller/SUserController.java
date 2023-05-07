@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safein.backend.dto.User;
-import com.safein.backend.service.UserServiceImpl;
+import com.safein.backend.dto.SUser;
+import com.safein.backend.service.SUserServiceImpl;
 
 /**
  * @author Elena, Alejandro, Francisco
@@ -24,35 +24,35 @@ import com.safein.backend.service.UserServiceImpl;
  */
 
 @RestController
-public class UserController {
+public class SUserController {
 
 	@Autowired
-	UserServiceImpl userServiceImpl;
+	SUserServiceImpl userServiceImpl;
 
 	/** Get: List all users */
-	@GetMapping("/users")
-	public List<User> listUsers() {
+	@GetMapping("/susers")
+	public List<SUser> listUsers() {
 		return userServiceImpl.listUsers();
 	}
 
 	/** Create: Save an user */
-	@PostMapping("/users")
-	public User saveUser(@RequestBody User user) {
+	@PostMapping("/susers")
+	public SUser saveUser(@RequestBody SUser user) {
 
 		return userServiceImpl.saveUser(user);
 	}
 
 	/** Get: Read info about an user */
-	@GetMapping("/users/{id}")
-	public User getUserById(@PathVariable(name = "id") Long id) {
+	@GetMapping("/susers/{id}")
+	public SUser getUserById(@PathVariable(name = "id") Long id) {
 		return userServiceImpl.getUserById(id);
 	}
 
 	/** Update: an user */
-	@PutMapping("/users/{id}")
-	public User updateUser(@PathVariable(name = "id") Long id, @RequestBody User user) {
+	@PutMapping("/susers/{id}")
+	public SUser updateUser(@PathVariable(name = "id") Long id, @RequestBody SUser user) {
 
-		User user_selected = new User();
+		SUser user_selected = new SUser();
 
 		user_selected = userServiceImpl.getUserById(id);
 		user_selected.setUsername(user.getUsername());
@@ -65,7 +65,7 @@ public class UserController {
 	}
 
 	/** Delete: an user */
-	@DeleteMapping("/users/{id}")
+	@DeleteMapping("/susers/{id}")
 	public void deleteUser(@PathVariable(name = "id") Long id) {
 		userServiceImpl.deleteUser(id);
 	}

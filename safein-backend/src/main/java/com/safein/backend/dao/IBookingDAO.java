@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Customers;
-import com.safein.backend.dto.User;
+import com.safein.backend.dto.SUser;
 
 /**
  * @author Elena, Alejandro Francisco
@@ -17,7 +17,7 @@ import com.safein.backend.dto.User;
  */
 public interface IBookingDAO extends JpaRepository<Booking, Long>{
 
-	 List<Booking> findByUser(User user);
+	 List<Booking> findByUser(SUser user);
 	 
 	 List<Booking> findByCustomers(Customers customers);
 }

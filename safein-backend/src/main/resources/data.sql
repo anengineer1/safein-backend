@@ -3,7 +3,7 @@ use safein_test;
 
 
 /* Users Table */
-CREATE TABLE IF NOT EXISTS users(
+CREATE TABLE IF NOT EXISTS susers(
 id INT NOT NULL AUTO_INCREMENT,
 username varchar(100) NOT NULL UNIQUE,
 password varchar (255) NOT NULL,
@@ -12,8 +12,8 @@ email varchar(255) NOT NULL,
 PRIMARY KEY (id)
 );
 
-INSERT INTO users (username,password,nomapels,email) value ("marraya","Ma@ara","Maria Raices","mrraynet@gmail.com");
-INSERT INTO users (username,password,nomapels,email) value ("AntAn","AnA#$","Antonio Andres","antmannn@gmail.com");
+INSERT INTO susers (username,password,nomapels,email) value ("marraya","Ma@ara","Maria Raices","mrraynet@gmail.com");
+INSERT INTO susers (username,password,nomapels,email) value ("AntAn","AnA#$","Antonio Andres","antmannn@gmail.com");
 INSERT INTO users (username,password,nomapels,email) values ("NicoGico","Ni#$Gii","Nicolas Gimenez","nicogi@gmail.com");
 
 /* Countries Table */
@@ -57,10 +57,10 @@ CREATE TABLE IF NOT EXISTS bookings (
   is_payed boolean not null default 0,/* By default false*/
   is_pending_pay boolean not null default 0,/* By default false*/
   customer_id int,
-  user_id int,  
+  suser_id int,  
   primary key (id),
   constraint customer_ibfk_1 FOREIGN KEY (customer_id) REFERENCES customers(id),
-  constraint user_ibfk_1 FOREIGN KEY (user_id) REFERENCES users(id)
+  constraint user_ibfk_1 FOREIGN KEY (suser_id) REFERENCES susers(id)
 );
 
 INSERT INTO bookings (amount, num_people, is_payed, is_pending_pay, customer_id, user_id) VALUES (250.00, 1, true, false, 1, 1);
