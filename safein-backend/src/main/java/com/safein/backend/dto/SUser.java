@@ -44,7 +44,7 @@ public class SUser {
 	@Column(name = "nomapels")
 	private String nomApels;
 
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "suser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Booking> bookings;
 
 	// ----------------- Constructors -----------------
