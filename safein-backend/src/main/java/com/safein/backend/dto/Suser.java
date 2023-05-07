@@ -44,6 +44,9 @@ public class Suser {
 	@Column(name = "nomapels")
 	private String nomApels;
 
+	@Column(name = "role")
+	private String role;
+
 	@OneToMany(mappedBy = "suser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Booking> bookings;
 
@@ -56,22 +59,23 @@ public class Suser {
 	}
 
 	/**
-	 * Constructor with parameters
-	 * 
 	 * @param id
 	 * @param username
 	 * @param password
 	 * @param email
 	 * @param nomApels
-	 * @param booking
+	 * @param role
+	 * @param bookings
 	 */
-	public Suser(Long id, String username, String password, String email, String nomApels, List<Booking> bookings) {
+	public Suser(Long id, String username, String password, String email, String nomApels, String role,
+			List<Booking> bookings) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.nomApels = nomApels;
+		this.role = role;
 		this.bookings = bookings;
 	}
 
@@ -161,12 +165,26 @@ public class Suser {
 		this.bookings = bookings;
 	}
 
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	// ----------------- Methods -----------------
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
-				+ ", nomApels=" + nomApels + ", bookings=" + bookings + "]";
+		return "Suser [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", nomApels=" + nomApels + ", role=" + role + ", bookings=" + bookings + "]";
 	}
 
 }
