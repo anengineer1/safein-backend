@@ -20,5 +20,5 @@ public interface ICustomersService {
 
 	List<Customers> listCustomersByMedia(String media);
 
-	Customers listByNumAndDoctype(Long num, String doctype);
+	Customers listByNumAndDoctype(String num, String doctype);
 }

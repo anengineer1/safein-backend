@@ -26,11 +26,9 @@ longitude DOUBLE NOT NULL,
 situation ENUM ("Tension Between Countries","Risk of war","War","High crime","Political instability","Natural Disaster") NOT NULL,
 PRIMARY KEY (id)
 );
-
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('UA',"Ukraine", 49.0000000, 32.0000000,'War');
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('SO',"Somalia", 10.0000000, 49.0000000,'War');
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('ID',"Indonesia", -5.0000000, 120.0000000,'Natural Disaster');
-
 /* Customers Table */
 CREATE TABLE IF NOT EXISTS customers(
 id int NOT NULL auto_increment,
@@ -48,6 +46,8 @@ FOREIGN KEY (country_id) REFERENCES countries(id)
 INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Maks Levin","+341725923","mklevis@gmail.com","LB.ua","DNI","5263383944",1);
 INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Robert Capa","+34183564784","rcopa@gmail.com","independiente","DNI","5263744744",2);
 INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Frédéric Leclerc-Imhoff","+341445623","freddy@gmail.com","BFMTV","DNI","5263374744",3);
+
+ SELECT * FROM customers;
 
 /* Bookings Table */
 CREATE TABLE IF NOT EXISTS bookings (

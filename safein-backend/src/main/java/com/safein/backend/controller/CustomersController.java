@@ -29,9 +29,8 @@ public class CustomersController {
 		return customersServiceImpl.customersById(id);
 	}
 
-	@GetMapping("/customers/doc/{doctype}/{num}")
-	public Customers listDocNumberCustomers(@PathVariable(name = "num") Long num,
-			@PathVariable(name = "doctype") String doctype) {
+	@GetMapping("/customers/doc/{doc_identificator}/{num_identificator}")
+	public Customers listDocNumberCustomers(@PathVariable(name = "num_identificator") String num, @PathVariable(name = "doc_identificator") String doctype) {
 		return customersServiceImpl.listByNumAndDoctype(num, doctype);
 	}
 

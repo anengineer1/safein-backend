@@ -14,6 +14,6 @@ public interface ICustomersDAO extends JpaRepository<Customers, Long> {
 
 	List<Customers> findCustomersByPressMedia(String media);
 
-	Customers findByNumIdentifierAndDocIdentifier(Long num, String doctype);
+	Customers findByNumIdentifierAndDocIdentifier(String num, String doctype);
 
 }

@@ -62,7 +62,7 @@ public class CustomersServiceImpl implements ICustomersService {
 	}
 
 	@Override
-	public Customers listByNumAndDoctype(Long num, String doctype) {
+	public Customers listByNumAndDoctype(String num, String doctype) {
 
 		return iCustomersDAO.findByNumIdentifierAndDocIdentifier(num, doctype);
 	}
