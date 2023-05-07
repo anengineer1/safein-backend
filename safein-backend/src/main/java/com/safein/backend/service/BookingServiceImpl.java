@@ -14,7 +14,7 @@ import com.safein.backend.dao.ICustomersDAO;
 import com.safein.backend.dao.IHandleDAO;
 import com.safein.backend.dao.IHotelsDAO;
 import com.safein.backend.dao.IRoomDAO;
-import com.safein.backend.dao.ISUserDAO;
+import com.safein.backend.dao.ISuserDAO;
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
 import com.safein.backend.dto.Room;
@@ -31,7 +31,7 @@ public class BookingServiceImpl implements IBookingService {
 	@Autowired
 	IHandleDAO iHandleDAO;
 	@Autowired
-	ISUserDAO iUserDAO;
+	ISuserDAO iSuserDAO;
 	@Autowired
 	ICustomersDAO iCustomersDAO;
 	@Autowired
@@ -39,9 +39,6 @@ public class BookingServiceImpl implements IBookingService {
 	@Autowired
 	IHotelsDAO iHotelsDAO;
 
-	
-	
-	
 	@Override
 	public Handle listBookingsByBookingId(Long booking_id) {
 
@@ -49,9 +46,9 @@ public class BookingServiceImpl implements IBookingService {
 	}
 
 	@Override
-	public List<Handle> listBookingsByUserId(Long user_id) {
+	public List<Handle> listBookingsByUserId(Long suser_id) {
 		// TODO Pending User PR
-		List<Booking> bk = iBookingDAO.findByUser(iUserDAO.findById(user_id).get());
+		List<Booking> bk = iBookingDAO.findBySuser(iSuserDAO.findById(suser_id).get());
 		List<Handle> hs = new ArrayList<>();
 
 		for (Booking booking : bk) {
@@ -91,25 +88,25 @@ public class BookingServiceImpl implements IBookingService {
 
 	@Override
 	public Booking saveBooking(Booking booking) {
-		
+
 		return iBookingDAO.save(booking);
 	}
 
 	@Override
 	public Booking updateBooking(Booking booking) {
-		
+
 		return iBookingDAO.save(booking);
 	}
 
 	@Override
 	public void deleteBookingById(Long booking_id) {
-		
+
 		iBookingDAO.deleteById(booking_id);
 	}
 
 	@Override
 	public List<Handle> listAllHandles() {
-		
+
 		return iHandleDAO.findAll();
 	}
 
@@ -138,7 +135,7 @@ public class BookingServiceImpl implements IBookingService {
 	@Override
 	public void deleteHandleById(Long handle_id) {
 		iHandleDAO.deleteById(handle_id);
-		
+
 	}
 
 }

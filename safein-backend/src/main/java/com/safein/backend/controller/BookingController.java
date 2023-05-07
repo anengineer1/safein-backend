@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
-import com.safein.backend.dto.Room;
 import com.safein.backend.service.BookingServiceImpl;
 
 @RestController
@@ -46,9 +45,9 @@ public class BookingController {
 		return bookingServiceImpl.getHandleById(id);
 	}
 
-	@GetMapping("/booking/user/{users}")
-	public List<Handle> listBookingByUser(@PathVariable(name = "users") Long user_id) {
-		return bookingServiceImpl.listBookingsByUserId(user_id);
+	@GetMapping("/booking/user/{susers}")
+	public List<Handle> listBookingByUser(@PathVariable(name = "susers") Long suser_id) {
+		return bookingServiceImpl.listBookingsByUserId(suser_id);
 	}
 
 	@GetMapping("/booking/customer/{customer}")
@@ -107,7 +106,7 @@ public class BookingController {
 		booking_selected.setNumPeople(booking.getNumPeople());
 		booking_selected.setPayed(booking.isPayed());
 		booking_selected.setPendingPay(booking.isPendingPay());
-		booking_selected.setSUser(booking.getSUser());
+		booking_selected.setSuser(booking.getSuser());
 		booking_selected.setCustomers(booking.getCustomers());
 		
 		return bookingServiceImpl.updateBooking(booking_selected);

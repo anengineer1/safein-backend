@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 //import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safein.backend.dto.SUser;
+import com.safein.backend.dto.Suser;
 import com.safein.backend.service.SUserServiceImpl;
 
 /**
@@ -31,28 +31,28 @@ public class SUserController {
 
 	/** Get: List all users */
 	@GetMapping("/susers")
-	public List<SUser> listUsers() {
+	public List<Suser> listUsers() {
 		return userServiceImpl.listUsers();
 	}
 
 	/** Create: Save an user */
 	@PostMapping("/susers")
-	public SUser saveUser(@RequestBody SUser user) {
+	public Suser saveUser(@RequestBody Suser user) {
 
 		return userServiceImpl.saveUser(user);
 	}
 
 	/** Get: Read info about an user */
 	@GetMapping("/susers/{id}")
-	public SUser getUserById(@PathVariable(name = "id") Long id) {
+	public Suser getUserById(@PathVariable(name = "id") Long id) {
 		return userServiceImpl.getUserById(id);
 	}
 
 	/** Update: an user */
 	@PutMapping("/susers/{id}")
-	public SUser updateUser(@PathVariable(name = "id") Long id, @RequestBody SUser user) {
+	public Suser updateUser(@PathVariable(name = "id") Long id, @RequestBody Suser user) {
 
-		SUser user_selected = new SUser();
+		Suser user_selected = new Suser();
 
 		user_selected = userServiceImpl.getUserById(id);
 		user_selected.setUsername(user.getUsername());

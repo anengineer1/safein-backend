@@ -24,7 +24,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "susers")
-public class SUser {
+public class Suser {
 
 	// ----------------- Atributes -----------------
 	@Id
@@ -51,7 +51,7 @@ public class SUser {
 	/**
 	 * Default Constructor
 	 */
-	public SUser() {
+	public Suser() {
 
 	}
 
@@ -65,7 +65,7 @@ public class SUser {
 	 * @param nomApels
 	 * @param booking
 	 */
-	public SUser(Long id, String username, String password, String email, String nomApels, List<Booking> bookings) {
+	public Suser(Long id, String username, String password, String email, String nomApels, List<Booking> bookings) {
 		super();
 		this.id = id;
 		this.username = username;

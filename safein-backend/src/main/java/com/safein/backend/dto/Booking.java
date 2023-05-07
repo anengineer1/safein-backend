@@ -50,7 +50,7 @@ public class Booking {
 
 	@ManyToOne
 	@JoinColumn(name = "suser_id")
-	private SUser suser;
+	private Suser suser;
 
 	@OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Handle> handles;
@@ -69,18 +69,18 @@ public class Booking {
 	 * @param numPeople    (int)
 	 * @param isPayed      (boolean)
 	 * @param isPendingPay (boolean)
-	 * @param customers       (Customer)
-	 * @param user         (User)
+	 * @param customers    (Customer)
+	 * @param suser         (Suser)
 	 * @param handles
 	 */
-	public Booking(double amount, int numPeople, boolean isPayed, boolean isPendingPay, Customers customers, SUser user,
+	public Booking(double amount, int numPeople, boolean isPayed, boolean isPendingPay, Customers customers, Suser suser,
 			List<Handle> handles) {
 		this.amount = amount;
 		this.numPeople = numPeople;
 		this.isPayed = isPayed;
 		this.isPendingPay = isPendingPay;
 		this.customers = customers;
-		this.suser = user;
+		this.suser = suser;
 		this.handles = handles;
 	}
 
@@ -138,14 +138,7 @@ public class Booking {
 		this.customers = customers;
 	}
 
-	/**
-	 * Sets the user
-	 * 
-	 * @param user (User)
-	 */
-	public void setSUser(SUser suser) {
-		this.suser = suser;
-	}
+
 
 	/**
 	 * Set Handles
@@ -211,15 +204,6 @@ public class Booking {
 	}
 
 	/**
-	 * Get he user
-	 * 
-	 * @return (User)
-	 */
-	public SUser getSUser() {
-		return suser;
-	}
-
-	/**
 	 * Get handles
 	 * 
 	 * @return
@@ -227,6 +211,20 @@ public class Booking {
 	@JsonIgnore
 	public List<Handle> getHandles() {
 		return handles;
+	}
+	
+	/**
+	 * @return the suser
+	 */
+	public Suser getSuser() {
+		return suser;
+	}
+
+	/**
+	 * @param suser the suser to set
+	 */
+	public void setSuser(Suser suser) {
+		this.suser = suser;
 	}
 
 	/**
