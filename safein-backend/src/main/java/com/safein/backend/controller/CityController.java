@@ -85,7 +85,7 @@ public class CityController {
 	 * @param city
 	 * @return
 	 */
-	@PutMapping("/cities")
+	@PutMapping("/cities/{id}")
 	public City updateCity(@RequestBody City city) {
 		City selected_city = new City();
 		City updated_city = new City();
