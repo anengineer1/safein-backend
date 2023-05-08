@@ -61,12 +61,12 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.POST, "/register").permitAll()
              .requestMatchers(HttpMethod.POST, "/login").permitAll()
              //Filtros de countries
-             .requestMatchers(HttpMethod.GET, "/countries").hasAnyAuthority("admin", "user")
-             .requestMatchers(HttpMethod.GET, "/countries/id/**").hasAnyAuthority("admin", "user")
-             .requestMatchers(HttpMethod.GET, "/countries/countrycode/**").hasAnyAuthority("admin", "user")
-             .requestMatchers(HttpMethod.POST, "/countries").hasAnyAuthority("admin")
-             .requestMatchers(HttpMethod.PUT, "/countries").hasAnyAuthority("admin")
-             .requestMatchers(HttpMethod.POST, "/countries/**").hasAnyAuthority("admin")
+             .requestMatchers(HttpMethod.GET, "/countries").hasAnyAuthority("admin", "user", "editor")
+             .requestMatchers(HttpMethod.GET, "/countries/id/**").hasAnyAuthority("admin", "user", "editor")
+             .requestMatchers(HttpMethod.GET, "/countries/countrycode/**").hasAnyAuthority("admin", "user", "editor")
+             .requestMatchers(HttpMethod.POST, "/countries").hasAnyAuthority("admin", "editor")
+             .requestMatchers(HttpMethod.PUT, "/countries").hasAnyAuthority("admin", "editor")
+             .requestMatchers(HttpMethod.DELETE, "/countries/**").hasAnyAuthority("admin")
              //Filtros de hotels
              .requestMatchers(HttpMethod.GET,"/hotels").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/hotels/id/**").hasAnyAuthority("admin","user","editor")
@@ -121,7 +121,7 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.POST,"/handle").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.PUT,"/booking/**").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.PUT,"/handle/**").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.DELETE,"/booking/handles/**").hasAnyAuthority("admin")  
+             .requestMatchers(HttpMethod.DELETE,"/booking/handles/**").hasAnyAuthority("admin")
              .anyRequest().authenticated()
              .and()
              .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
