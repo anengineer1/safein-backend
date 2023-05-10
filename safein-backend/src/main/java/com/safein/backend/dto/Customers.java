@@ -18,13 +18,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 /**
  * @author Elena, Alejandro, Francisco
  *
  */
 @Entity
-@Table(name = "customers")
+@Table(name = "customers", uniqueConstraints = {
+		@UniqueConstraint(name = "unique_combination", columnNames = { "doc_identificator", "num_identificator" }) })
 public class Customers {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
