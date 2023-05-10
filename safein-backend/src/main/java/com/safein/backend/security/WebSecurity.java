@@ -94,11 +94,12 @@ public class WebSecurity {
              //Filter SUser
              .requestMatchers(HttpMethod.GET,"/susers").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/susers/**").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.POST,"/register").hasAnyAuthority("admin")
              .requestMatchers(HttpMethod.PUT,"/susers/**").hasAnyAuthority("admin")
              .requestMatchers(HttpMethod.DELETE,"/susers/**").hasAnyAuthority("admin")
              //Filter Rooms
              .requestMatchers(HttpMethod.GET,"/rooms").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/rooms/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/rooms/hotels/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/rooms/numpeople/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/rooms/inettype/**").hasAnyAuthority("admin","user","editor")
@@ -106,7 +107,7 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.GET,"/rooms/terrace/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/rooms/1/numpers/2").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.POST,"/rooms").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.PUT,"/rooms").hasAnyAuthority("admin","editor")
+             .requestMatchers(HttpMethod.PUT,"/rooms/**").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.DELETE,"/rooms").hasAnyAuthority("admin")  
              //Filter Handles/Bookings
              .requestMatchers(HttpMethod.GET,"/booking").hasAnyAuthority("admin","user","editor")
