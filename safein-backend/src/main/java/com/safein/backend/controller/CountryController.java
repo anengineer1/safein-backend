@@ -36,6 +36,27 @@ public class CountryController {
 	public List<Country> listAllCountries() {
 		return countryServiceImpl.listCountries();
 	}
+	
+	/**
+	 * Returns all countries from the database
+	 * 
+	 * @return List of Country
+	 */
+	@GetMapping("/countries/asc")
+	public List<Country> listAllCountriesAscCountryCode() {
+		return countryServiceImpl.getCountriesByCountryCodeAsc();
+	}
+
+	/**
+	 * Returns all countries from the database
+	 * 
+	 * @return List of Country
+	 */
+	@GetMapping("/countries/desc")
+	public List<Country> listAllCountriesDescCountryCode() {
+		return countryServiceImpl.listCountries();
+	}
+
 
 	/**
 	 * Returns a Country given its internal id

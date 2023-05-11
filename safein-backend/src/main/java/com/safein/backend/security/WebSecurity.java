@@ -62,6 +62,8 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.POST, "/login").permitAll()
              //Filtros de countries
              .requestMatchers(HttpMethod.GET, "/countries").hasAnyAuthority("admin", "user", "editor")
+             .requestMatchers(HttpMethod.GET, "/countries/asc").hasAnyAuthority("admin", "user", "editor")
+             .requestMatchers(HttpMethod.GET, "/countries/desc").hasAnyAuthority("admin", "user", "editor")
              .requestMatchers(HttpMethod.GET, "/countries/id/**").hasAnyAuthority("admin", "user", "editor")
              .requestMatchers(HttpMethod.GET, "/countries/countrycode/**").hasAnyAuthority("admin", "user", "editor")
              .requestMatchers(HttpMethod.POST, "/countries").hasAnyAuthority("admin", "editor")
