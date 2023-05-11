@@ -21,6 +21,13 @@ public interface IBookingService {
 	//List All Bookings
 	public List<Booking> listAllBookings();
 	
+
+	// List all Handle sorted by Customer by ascending order
+	public List<Handle> listAllHandlesSortedAscByCustomer();
+	
+	// List all Handle sorted by Customer by descending order
+	public List<Handle> listAllHandlesSortedDescByCustomer();
+	
 	//Get Booking By Booking_id
 	public Booking getBookingById(Long id);
 	
@@ -54,5 +61,6 @@ public interface IBookingService {
 	public void deleteBookingById(Long booking_id);
 	
 	public void deleteHandleById(Long handle_id);
+
 	
 }
