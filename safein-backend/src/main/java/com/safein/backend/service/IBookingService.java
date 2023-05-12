@@ -61,9 +61,14 @@ public interface IBookingService {
 	// DELETE /bookings/{id}
 	public void deleteBookingById(Long booking_id);
 	
+	// DELETE /handles/{id}
 	public void deleteHandleById(Long handle_id);
 
-	List<Hotel> listAllHandlesSortedAscByHotels();
+	
+	//List All handles sort by hotels ASC and DESC
+	public List<Handle> listAllHandlesSortedAscByHotels();
+
+	public List<Handle> listAllHandlesSortedDescByHotels();
 
 	
 }

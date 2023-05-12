@@ -141,8 +141,14 @@ public class BookingServiceImpl implements IBookingService {
 	}
 
 	@Override
-	public List<Hotel> listAllHandlesSortedAscByHotels() {
-		return iHotelsDAO.findAll(Sort.by("Booking.Hotels.id").ascending());
+	public List<Handle> listAllHandlesSortedAscByHotels() {
+		return iHandleDAO.findAll(Sort.by("room.hotel.id").ascending());
+	}
+	
+	
+	@Override
+	public List<Handle> listAllHandlesSortedDescByHotels() {
+		return iHandleDAO.findAll(Sort.by("room.hotel.id").descending());
 	}
 	
 	@Override

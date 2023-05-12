@@ -69,12 +69,7 @@ public class BookingController {
 
 		return bookingServiceImpl.listBookingsByCustomerId(id);
 	}
-	/*
-	 * @GetMapping("/booking/rooms") public List<Booking>
-	 * listBookingByRooms(@PathVariable(name = "rooms") String rooms) {
-	 * 
-	 * return handlesServiceImpl.listRoomsByBooking(rooms); }
-	 */
+
 
 	@GetMapping("/booking/rooms/{rooms}")
 	public List<Handle> listRoomByBookingId(@PathVariable(name = "rooms") Long id) {
@@ -84,6 +79,16 @@ public class BookingController {
 	@GetMapping("/booking/hotel/{hotel}")
 	public List<Handle> listHotelByBookingId(@PathVariable(name = "hotel") Long id) {
 		return bookingServiceImpl.listHandlesByHotelId(id);
+	}
+	
+	@GetMapping("booking/hotels_asc")
+	public List<Handle> listHandlesOrderedByHotelAsc(){
+		return bookingServiceImpl.listAllHandlesSortedAscByHotels();
+	}
+	
+	@GetMapping("booking/hotels_desc")
+	public List<Handle> listHandlesOrderedByHotelDesc(){
+		return bookingServiceImpl.listAllHandlesSortedDescByHotels();
 	}
 
 	@PostMapping("/booking")
@@ -95,12 +100,6 @@ public class BookingController {
 	public Handle createBooking(@RequestBody Handle handle) {
 		return bookingServiceImpl.saveHandle(handle);
 	}
-	
-	/*
-	 * @GetMapping("/booking/hotels/asc") public List<Hotel>
-	 * listAllCountriesAsHotelsCode() { return
-	 * bookingServiceImpl.listAllHandlesSortedAscByHotels(); }
-	 */
 
 	
 	@PutMapping("/handle/{id}")

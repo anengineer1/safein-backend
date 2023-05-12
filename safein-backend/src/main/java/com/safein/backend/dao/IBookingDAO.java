@@ -10,7 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Customers;
-import com.safein.backend.dto.Hotel;
 import com.safein.backend.dto.Suser;
 
 /**
