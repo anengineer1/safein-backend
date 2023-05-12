@@ -23,5 +23,6 @@ public interface IBookingDAO extends JpaRepository<Booking, Long> {
 
 	List<Booking> findByCustomers(Customers customers);
 
-	List<Hotel> findByHotels(Hotel hotel);
+	//List<Hotel> findByHotel(Hotel hotel);
+
 }

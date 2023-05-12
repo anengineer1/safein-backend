@@ -96,10 +96,11 @@ public class BookingController {
 		return bookingServiceImpl.saveHandle(handle);
 	}
 	
-	@GetMapping("/booking/hotels/asc")
-	public List<Hotel> listAllCountriesAsHotelsCode() {
-		return bookingServiceImpl.listAllHandlesSortedAscByHotels();
-	}
+	/*
+	 * @GetMapping("/booking/hotels/asc") public List<Hotel>
+	 * listAllCountriesAsHotelsCode() { return
+	 * bookingServiceImpl.listAllHandlesSortedAscByHotels(); }
+	 */
 
 	
 	@PutMapping("/handle/{id}")

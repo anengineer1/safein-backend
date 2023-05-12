@@ -25,4 +25,5 @@ public interface IHandleDAO extends JpaRepository<Handle, Long> {
 	
 	List<Handle> findAll(Sort sort);
 
+	
 }
