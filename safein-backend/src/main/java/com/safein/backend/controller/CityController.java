@@ -3,6 +3,7 @@ package com.safein.backend.controller;
 import java.util.List;
 
 import com.safein.backend.dto.City;
+import com.safein.backend.dto.Handle;
 import com.safein.backend.service.CityServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,4 +113,21 @@ public class CityController {
 		cityServiceImpl.deleteCity(id);
 	}
 
+	/*
+	 * Returns list of cities sorted by country id Asc
+	 */
+	@GetMapping("cities/countries_asc")
+	public List<City> listCitiesOrderedByCountryAsc(){
+		return cityServiceImpl.listAllCitiesSortedAscByCountry();
+	}
+	
+	/*
+	 * Returns list of cities sorted by country id Desc
+	 */
+	@GetMapping("cities/countries_desc")
+	public List<City> listCitiesOrderedByCountryDesc(){
+		return cityServiceImpl.listAllCitiesSortedDescByCountry();
+	}
+	
+	
 }

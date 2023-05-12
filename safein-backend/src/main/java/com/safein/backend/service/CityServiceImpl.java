@@ -6,6 +6,7 @@ import com.safein.backend.dto.City;
 import com.safein.backend.dto.Country;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.safein.backend.dao.ICityDAO;
@@ -57,5 +58,16 @@ public class CityServiceImpl implements ICityService {
 	public void deleteCity(long id) {
 		iCityDAO.deleteById(id);
 	}
+
+	@Override
+	public List<City> listAllCitiesSortedAscByCountry() {
+		return iCityDAO.findAll(Sort.by("country.id").ascending());
+	}
+
+	@Override
+	public List<City> listAllCitiesSortedDescByCountry() {
+		return iCityDAO.findAll(Sort.by("country.id").descending());
+	}
+
 
 }

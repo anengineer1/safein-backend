@@ -91,6 +91,8 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.GET,"/cities/id/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/cities/name/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/cities/country/**").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/cities/countries_asc").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/cities/countries_desc").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.POST,"/cities").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.PUT,"/cities/**").hasAnyAuthority("admin","editor")
              //Filter SUser
