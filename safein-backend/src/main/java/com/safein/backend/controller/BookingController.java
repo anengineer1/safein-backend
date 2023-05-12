@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
+import com.safein.backend.dto.Hotel;
 import com.safein.backend.service.BookingServiceImpl;
+import com.safein.backend.service.HotelsServiceImpl;
 
 @RestController
 public class BookingController {
 
 	@Autowired
 	BookingServiceImpl bookingServiceImpl;
+	@Autowired
+	HotelsServiceImpl hotelsServiceImpl;
 
 	/*
 	 * @Autowired HandleServiceImpl handlesServiceImpl;
@@ -91,6 +95,12 @@ public class BookingController {
 	public Handle createBooking(@RequestBody Handle handle) {
 		return bookingServiceImpl.saveHandle(handle);
 	}
+	
+	@GetMapping("/booking/hotels/asc")
+	public List<Hotel> listAllCountriesAsHotelsCode() {
+		return bookingServiceImpl.listAllHandlesSortedAscByHotels();
+	}
+
 	
 	@PutMapping("/handle/{id}")
 	public Handle updateHandle(@PathVariable(name = "id") Long id, @RequestBody Handle handle) {

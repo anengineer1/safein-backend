@@ -18,6 +18,7 @@ import com.safein.backend.dao.IRoomDAO;
 import com.safein.backend.dao.ISuserDAO;
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
+import com.safein.backend.dto.Hotel;
 import com.safein.backend.dto.Room;
 
 /**
@@ -140,6 +141,11 @@ public class BookingServiceImpl implements IBookingService {
 	}
 
 	@Override
+	public List<Hotel> listAllHandlesSortedAscByHotels() {
+		return iHotelsDAO.findAll(Sort.by("Booking.Hotels.id").ascending());
+	}
+	
+	@Override
 	public List<Handle> listAllHandlesSortedAscByCustomer() {
 		return iHandleDAO.findAll(Sort.by("Booking.Customers.id").ascending());
 	}
@@ -148,5 +154,7 @@ public class BookingServiceImpl implements IBookingService {
 	public List<Handle> listAllHandlesSortedDescByCustomer() {
 		return iHandleDAO.findAll(Sort.by("Booking.Customers.id").descending());
 	}
+
+
 
 }

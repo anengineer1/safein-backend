@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.safein.backend.dto.Country;
 import com.safein.backend.dto.Hotel;
 import com.safein.backend.service.HotelsServiceImpl;
 
@@ -42,6 +43,16 @@ public class HotelsController {
 	public List<Hotel> listHotelsByEngSuf(@PathVariable(name = "energy_suficient") boolean ensuf){
 		
 		return hotelsServiceImpl.listHotelByEnSuf(ensuf);
+	}
+	
+	@GetMapping("/hotels/asc")
+	public List<Hotel> listAllCountriesAscCountryCode() {
+		return hotelsServiceImpl.getHotelByCountryCodeAsc();
+	}
+
+	@GetMapping("/hotels/desc")
+	public List<Hotel> listAllHotelsDescCountryCode() {
+		return hotelsServiceImpl.listHotels();
 	}
 
 	@PostMapping("/hotels")

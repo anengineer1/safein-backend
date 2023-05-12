@@ -50,7 +50,6 @@ INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_
 INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Robert Capa","+34183564784","rcopa@gmail.com","independiente","DNI","5263744745",2);
 INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Frédéric Leclerc-Imhoff","+341445623","freddy@gmail.com","BFMTV","DNI","5263374744",3);
 
-SELECT * FROM customers;
 
 /* Bookings Table */
 CREATE TABLE IF NOT EXISTS bookings (
