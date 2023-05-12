@@ -29,6 +29,16 @@ public class BookingController {
 	public List<Handle> listHandles() {
 		return bookingServiceImpl.listAllHandles();
 	}
+	
+	@GetMapping("/booking/handles/customer_asc")
+	public List<Handle> listHandlesOrderedByCustomerAsc() {
+		return bookingServiceImpl.listAllHandlesSortedAscByCustomer();
+	}
+	
+	@GetMapping("/booking/handles/customer_desc")
+	public List<Handle> listHandlesOrderedByCustomerDesc() {
+		return bookingServiceImpl.listAllHandlesSortedDescByCustomer();
+	}
 
 	@GetMapping("/booking/{id}")
 	public Booking listBookingXID(@PathVariable(name = "id") Long id) {
