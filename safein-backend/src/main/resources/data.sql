@@ -1,5 +1,5 @@
 create database if not exists safein_test;
-use safein_test;
+use railway;
 
 /* Users Table */
 CREATE TABLE IF NOT EXISTS susers(
