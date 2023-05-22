@@ -4,6 +4,7 @@ package com.safein.backend.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.safein.backend.dto.Hotel;
@@ -17,6 +18,7 @@ public interface IHotelsDAO extends JpaRepository<Hotel, Long>{
 	
 	List<Hotel> findByEnergySuficient(boolean energy_suficient);
 	
+	List<Hotel> findAll(Sort sort);
 
 
 }

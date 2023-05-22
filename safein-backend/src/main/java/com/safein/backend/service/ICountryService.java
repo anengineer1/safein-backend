@@ -33,6 +33,21 @@ public interface ICountryService {
 	 * @return
 	 */
 	public Country getCountryByCountryCode(String country_code); // Get by Country code
+	
+	
+	/**
+	 * Get countries ordered by country code
+	 * 
+	 * @return
+	 */
+	public List<Country> getCountriesByCountryCodeAsc(); // Get by Country code
+
+	/**
+	 * Get countries ordered by country code
+	 * 
+	 * @return
+	 */
+	public List<Country> getCountriesByCountryCodeDesc(); // Get by Country code
 
 	/**
 	 * save a Country

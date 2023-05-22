@@ -5,6 +5,7 @@ import java.util.List;
 import com.safein.backend.dto.City;
 import com.safein.backend.dto.Country;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -21,4 +22,6 @@ public interface ICityDAO extends JpaRepository<City, Long> {
 	// to get the country id number from the country code
 	// and then parse the id number into this
 	List<City> findByCountry(Country country);
+	
+	List<City> findAll(Sort sort);
 }

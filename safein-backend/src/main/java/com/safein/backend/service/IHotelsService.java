@@ -14,4 +14,10 @@ public interface IHotelsService {
 	public Hotel updateHotels(Hotel hotels);
 
 	public Hotel saveHotels(Hotel hotels);
+
+	public List<Hotel> getHotelByCountryCodeAsc(); 
+
+	
+	public List<Hotel> getHotelByCountryCodeDesc(); 
+
 }

@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
+import com.safein.backend.dto.Hotel;
 import com.safein.backend.service.BookingServiceImpl;
+import com.safein.backend.service.HotelsServiceImpl;
 
 @RestController
 public class BookingController {
 
 	@Autowired
 	BookingServiceImpl bookingServiceImpl;
+	@Autowired
+	HotelsServiceImpl hotelsServiceImpl;
 
 	/*
 	 * @Autowired HandleServiceImpl handlesServiceImpl;
@@ -28,6 +32,16 @@ public class BookingController {
 	@GetMapping("/booking/handles")
 	public List<Handle> listHandles() {
 		return bookingServiceImpl.listAllHandles();
+	}
+	
+	@GetMapping("/booking/handles/customer_asc")
+	public List<Handle> listHandlesOrderedByCustomerAsc() {
+		return bookingServiceImpl.listAllHandlesSortedAscByCustomer();
+	}
+	
+	@GetMapping("/booking/handles/customer_desc")
+	public List<Handle> listHandlesOrderedByCustomerDesc() {
+		return bookingServiceImpl.listAllHandlesSortedDescByCustomer();
 	}
 
 	@GetMapping("/booking/{id}")
@@ -56,6 +70,7 @@ public class BookingController {
 		return bookingServiceImpl.listBookingsByCustomerId(id);
 	}
 
+
 	@GetMapping("/booking/rooms/{rooms}")
 	public List<Handle> listRoomByBookingId(@PathVariable(name = "rooms") Long id) {
 		return bookingServiceImpl.listHandlesByRoomId(id);
@@ -64,6 +79,16 @@ public class BookingController {
 	@GetMapping("/booking/hotel/{hotel}")
 	public List<Handle> listHotelByBookingId(@PathVariable(name = "hotel") Long id) {
 		return bookingServiceImpl.listHandlesByHotelId(id);
+	}
+	
+	@GetMapping("booking/hotels_asc")
+	public List<Handle> listHandlesOrderedByHotelAsc(){
+		return bookingServiceImpl.listAllHandlesSortedAscByHotels();
+	}
+	
+	@GetMapping("booking/hotels_desc")
+	public List<Handle> listHandlesOrderedByHotelDesc(){
+		return bookingServiceImpl.listAllHandlesSortedDescByHotels();
 	}
 
 	@PostMapping("/booking")
@@ -75,6 +100,7 @@ public class BookingController {
 	public Handle createBooking(@RequestBody Handle handle) {
 		return bookingServiceImpl.saveHandle(handle);
 	}
+
 	
 	@PutMapping("/handle/{id}")
 	public Handle updateHandle(@PathVariable(name = "id") Long id, @RequestBody Handle handle) {

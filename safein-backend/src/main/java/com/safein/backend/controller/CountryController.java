@@ -36,6 +36,27 @@ public class CountryController {
 	public List<Country> listAllCountries() {
 		return countryServiceImpl.listCountries();
 	}
+	
+	/**
+	 * Returns all countries from the database
+	 * 
+	 * @return List of Country
+	 */
+	@GetMapping("/countries/asc")
+	public List<Country> listAllCountriesAscCountryCode() {
+		return countryServiceImpl.getCountriesByCountryCodeAsc();
+	}
+
+	/**
+	 * Returns all countries from the database
+	 * 
+	 * @return List of Country
+	 */
+	@GetMapping("/countries/desc")
+	public List<Country> listAllCountriesDescCountryCode() {
+		return countryServiceImpl.listCountries();
+	}
+
 
 	/**
 	 * Returns a Country given its internal id
@@ -43,7 +64,7 @@ public class CountryController {
 	 * @param id
 	 * @return Country
 	 */
-	@GetMapping("countries/id/{id}")
+	@GetMapping("/countries/id/{id}")
 	public Country giveCountryContentById(@PathVariable(name = "id") long id) {
 		return countryServiceImpl.getCountryById(id);
 	}
@@ -54,7 +75,7 @@ public class CountryController {
 	 * @param country_code
 	 * @return Country
 	 */
-	@GetMapping("countries/countrycode/{code}")
+	@GetMapping("/countries/countrycode/{code}")
 	public Country giveCountryContentByCountryCode(@PathVariable(name = "code") String country_code) {
 		return countryServiceImpl.getCountryByCountryCode(country_code);
 	}
@@ -65,7 +86,7 @@ public class CountryController {
 	 * @param country
 	 * @return
 	 */
-	@PostMapping("countries")
+	@PostMapping("/countries")
 	public Country SaveCountry(@RequestBody Country country) { // POST
 		return countryServiceImpl.saveCountry(country);
 	}
@@ -76,7 +97,7 @@ public class CountryController {
 	 * @param country
 	 * @return
 	 */
-	@PutMapping("countries")
+	@PutMapping("/countries")
 	public Country updateCountry(@RequestBody Country country) {
 
 		Country selected_country = new Country();
@@ -100,7 +121,7 @@ public class CountryController {
 	 * 
 	 * @param id
 	 */
-	@DeleteMapping("countries/{id}")
+	@DeleteMapping("/countries/{id}")
 	public void deleteCountry(@PathVariable(name = "id") long id) {
 		countryServiceImpl.deleteCountry(id);
 	}
