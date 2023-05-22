@@ -5,6 +5,7 @@ package com.safein.backend.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.safein.backend.dao.IHotelsDAO;
@@ -62,6 +63,18 @@ public class HotelsServiceImpl implements IHotelsService {
 	public Hotel hotelsById(Long id) {
 
 		return iHotelsDAO.findById(id).get();
+	}
+
+	@Override
+	public List<Hotel> getHotelByCountryCodeAsc() {
+		// TODO Auto-generated method stub
+		return iHotelsDAO.findAll(Sort.by("CountryCode").ascending());
+	}
+
+	@Override
+	public List<Hotel> getHotelByCountryCodeDesc() {
+		// TODO Auto-generated method stub
+		return iHotelsDAO.findAll(Sort.by("CountryCode").descending());
 	}
 
 }

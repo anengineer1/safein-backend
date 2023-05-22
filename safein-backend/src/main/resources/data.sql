@@ -1,6 +1,5 @@
 create database if not exists safein_test;
-use safein_test;
-
+use railway;
 
 /* Users Table */
 CREATE TABLE IF NOT EXISTS susers(
@@ -9,12 +8,14 @@ username varchar(100) NOT NULL UNIQUE,
 password varchar (255) NOT NULL,
 nomapels varchar(255) NOT NULL,
 email varchar(255) NOT NULL,
+role NVARCHAR(255) NOT NULL,
 PRIMARY KEY (id)
 );
 
-INSERT INTO susers (username,password,nomapels,email) value ("marraya","Ma@ara","Maria Raices","mrraynet@gmail.com");
-INSERT INTO susers (username,password,nomapels,email) value ("AntAn","AnA#$","Antonio Andres","antmannn@gmail.com");
-INSERT INTO susers (username,password,nomapels,email) values ("NicoGico","Ni#$Gii","Nicolas Gimenez","nicogi@gmail.com");
+INSERT INTO susers (username,password,nomapels,email, role) value ("admin",'$2a$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.',"admin","nomail@gmail.com", "admin");
+INSERT INTO susers (username,password,nomapels,email, role) value ("marraya",'$2a$10$6pBWgEtPi/kMtZ7l4ik6SudQGHyf1.oi0q/5VvKzpgZ32yZ88Iw9q',"Maria Raices","mrraynet@gmail.com", "editor");
+INSERT INTO susers (username,password,nomapels,email, role) value ("AntAn",'$2a$10$xwVYF5bGk7V2b.HSmy/haOdN9QGQvjLIWeYrJqDR5v8E9urCD4zUW',"Antonio Andres","antmannn@gmail.com", "editor");
+INSERT INTO susers (username,password,nomapels,email, role) value ("NicoGico",'$2a$10$s.8JK58WTHv6tsHb6/FV/e5VZ1ZcAdmhxIvukAOdEYHMWHSKsFLJS',"Nicolas Gimenez","nicogi@gmail.com", "user");
 
 /* Countries Table */
 CREATE TABLE IF NOT EXISTS countries (
@@ -29,6 +30,7 @@ PRIMARY KEY (id)
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('UA',"Ukraine", 49.0000000, 32.0000000,'War');
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('SO',"Somalia", 10.0000000, 49.0000000,'War');
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('ID',"Indonesia", -5.0000000, 120.0000000,'Natural Disaster');
+
 /* Customers Table */
 CREATE TABLE IF NOT EXISTS customers(
 id int NOT NULL auto_increment,
@@ -39,15 +41,15 @@ press_media varchar(255) NOT NULL,
 doc_identificator varchar(50) NOT NULL,
 num_identificator varchar(50) NOT NULL,
 country_id int NOT NULL,
+CONSTRAINT unique_combination UNIQUE (doc_identificator, num_identificator),
 PRIMARY KEY (id),
 FOREIGN KEY (country_id) REFERENCES countries(id)
 );
 
 INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Maks Levin","+341725923","mklevis@gmail.com","LB.ua","DNI","5263383944",1);
-INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Robert Capa","+34183564784","rcopa@gmail.com","independiente","DNI","5263744744",2);
+INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Robert Capa","+34183564784","rcopa@gmail.com","independiente","DNI","5263744745",2);
 INSERT INTO customers (name,phonenumber,email,press_media,doc_identificator,num_identificator,country_id) VALUES ("Frédéric Leclerc-Imhoff","+341445623","freddy@gmail.com","BFMTV","DNI","5263374744",3);
 
- SELECT * FROM customers;
 
 /* Bookings Table */
 CREATE TABLE IF NOT EXISTS bookings (

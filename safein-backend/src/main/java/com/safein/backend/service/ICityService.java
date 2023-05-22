@@ -73,4 +73,20 @@ public interface ICityService {
 	 * @param id
 	 */
 	public void deleteCity(long id); // DELETE
+
+
+	/** 
+	 * Returns the cities sorted by country asc
+	 *  
+	 * @return List of cities sorted by country id
+	 */
+	public List<City> listAllCitiesSortedAscByCountry();
+	
+	/** 
+	 * Returns the cities sorted by country desc
+	 *  
+	 * @return List of cities sorted by country id
+	 */
+	public List<City> listAllCitiesSortedDescByCountry();
+
 }

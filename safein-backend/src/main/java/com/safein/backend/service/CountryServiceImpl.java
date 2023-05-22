@@ -7,6 +7,7 @@ import com.safein.backend.dto.Country;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 /**
  * CountryServiceImpl
@@ -42,6 +43,16 @@ public class CountryServiceImpl implements ICountryService {
 	@Override
 	public void deleteCountry(long id) {
 		iCountryDAO.deleteById(id);
+	}
+
+	@Override
+	public List<Country> getCountriesByCountryCodeDesc() {
+		return iCountryDAO.findAll(Sort.by("CountryCode").descending());
+	}
+
+	@Override
+	public List<Country> getCountriesByCountryCodeAsc() {
+		return iCountryDAO.findAll(Sort.by("CountryCode").ascending());
 	}
 
 }

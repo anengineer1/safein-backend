@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
+import com.safein.backend.dto.Hotel;
 import com.safein.backend.dto.Room;
 
 /**
@@ -20,6 +21,13 @@ public interface IBookingService {
 	
 	//List All Bookings
 	public List<Booking> listAllBookings();
+	
+
+	// List all Handle sorted by Customer by ascending order
+	public List<Handle> listAllHandlesSortedAscByCustomer();
+	
+	// List all Handle sorted by Customer by descending order
+	public List<Handle> listAllHandlesSortedDescByCustomer();
 	
 	//Get Booking By Booking_id
 	public Booking getBookingById(Long id);
@@ -53,6 +61,14 @@ public interface IBookingService {
 	// DELETE /bookings/{id}
 	public void deleteBookingById(Long booking_id);
 	
+	// DELETE /handles/{id}
 	public void deleteHandleById(Long handle_id);
+
+	
+	//List All handles sort by hotels ASC and DESC
+	public List<Handle> listAllHandlesSortedAscByHotels();
+
+	public List<Handle> listAllHandlesSortedDescByHotels();
+
 	
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.safein.backend.dao.IBookingDAO;
@@ -17,6 +18,7 @@ import com.safein.backend.dao.IRoomDAO;
 import com.safein.backend.dao.ISuserDAO;
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
+import com.safein.backend.dto.Hotel;
 import com.safein.backend.dto.Room;
 
 /**
@@ -137,5 +139,28 @@ public class BookingServiceImpl implements IBookingService {
 		iHandleDAO.deleteById(handle_id);
 
 	}
+
+	@Override
+	public List<Handle> listAllHandlesSortedAscByHotels() {
+		return iHandleDAO.findAll(Sort.by("room.hotel.id").ascending());
+	}
+	
+	
+	@Override
+	public List<Handle> listAllHandlesSortedDescByHotels() {
+		return iHandleDAO.findAll(Sort.by("room.hotel.id").descending());
+	}
+	
+	@Override
+	public List<Handle> listAllHandlesSortedAscByCustomer() {
+		return iHandleDAO.findAll(Sort.by("Booking.Customers.id").ascending());
+	}
+
+	@Override
+	public List<Handle> listAllHandlesSortedDescByCustomer() {
+		return iHandleDAO.findAll(Sort.by("Booking.Customers.id").descending());
+	}
+
+
 
 }
