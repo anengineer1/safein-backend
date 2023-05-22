@@ -29,7 +29,6 @@ import com.safein.backend.dto.Suser;
 import com.safein.backend.service.SUserServiceImpl;
 import com.safein.backend.dto.AuthResponseDTO;
 import com.safein.backend.dao.ISuserDAO;
-import com.safein.backend.security.JwtGenerator;
 
 /**
  * @author Elena, Alejandro, Francisco
@@ -43,22 +42,7 @@ public class SUserController {
 	@Autowired
 	SUserServiceImpl userServiceImpl;
 	
-	private AuthenticationManager authenticationManager;
 
-	private ISuserDAO iSuserDAO;
-
-	private PasswordEncoder passwordEncoder;
-	
-	private JwtGenerator jwtGenerator;
-
-	@Autowired
-	public SUserController(ISuserDAO iUsuarioDAO, PasswordEncoder bCryptPasswordEncoder, JwtGenerator jwtGenerator,
-			AuthenticationManager authenticationManager) {
-		this.iSuserDAO = iUsuarioDAO;
-		this.passwordEncoder = bCryptPasswordEncoder;
-		this.jwtGenerator = jwtGenerator;
-		this.authenticationManager = authenticationManager;
-	}
 	
 	@GetMapping("/response-entity-builder-with-http-headers")
 	public ResponseEntity<String> usingResponseEntityBuilderAndHttpHeaders() {
@@ -71,27 +55,6 @@ public class SUserController {
 	      .body("Response with header using ResponseEntity");
 	}
 	
-	@PostMapping("/login")
-	public ResponseEntity<AuthResponseDTO> login(@RequestBody Suser user) {
-		UsernamePasswordAuthenticationToken test = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
-		
-		Authentication authentication = authenticationManager.authenticate(test);
-		
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String token = jwtGenerator.generateToken(authentication);
-		AuthResponseDTO authResponseDTO = new AuthResponseDTO(token);
-		return new ResponseEntity<>(authResponseDTO, HttpStatus.OK);
-	}
-	
-	
-	@PostMapping("/register")
-	public ResponseEntity<Suser> saveUsuario(@RequestBody Suser user) {
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		iSuserDAO.save(user);
-		// return user;
-		return new ResponseEntity<>(user, HttpStatus.OK);
-	}
-
 	/** Get: List all users */
 	@GetMapping("/susers")
 	public List<Suser> listUsers() {
