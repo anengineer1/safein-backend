@@ -80,6 +80,13 @@ public class SUserController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String token = jwtGenerator.generateToken(authentication);
 		AuthResponseDTO authResponseDTO = new AuthResponseDTO(token);
+		if (authResponseDTO != null) {
+			Suser suser = new Suser();
+			suser = userServiceImpl.getUserByUsername(user.getUsername());
+			authResponseDTO.setUsername(suser.getUsername());
+			authResponseDTO.setEmail(suser.getEmail());
+			authResponseDTO.setRole(suser.getRole());
+		}
 		return new ResponseEntity<>(authResponseDTO, HttpStatus.OK);
 	}
 	
