@@ -18,6 +18,8 @@ public interface ISUserService {
 	public Suser saveUser(Suser user); /**Create: Save an user */
 
 	public Suser getUserById(Long id); /**Get: Read info about an user */
+	
+	public Suser getUserByUsername(String username); /**Get: Read info about an user */
 
 	public Suser updateUser(Suser user);/**Update: an user */
 

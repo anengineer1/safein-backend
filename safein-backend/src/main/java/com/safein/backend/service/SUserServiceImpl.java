@@ -54,4 +54,14 @@ public class SUserServiceImpl implements ISUserService {
 	public void deleteUser(Long id) {
 		iUserDAO.deleteById(id);
 	}
+
+	/**Get: An user by username
+	 * @param username
+	 * 
+	 * */
+	@Override
+	public Suser getUserByUsername(String username) {
+		
+		return iUserDAO.findByUsername(username);
+	}
 }

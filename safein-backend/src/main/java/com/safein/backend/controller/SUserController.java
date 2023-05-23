@@ -98,10 +98,16 @@ public class SUserController {
 		return userServiceImpl.listUsers();
 	}
 
-	/** Get: Read info about an user */
+	/** Get: Read info about an user by id*/
 	@GetMapping("/susers/{id}")
 	public Suser getUserById(@PathVariable(name = "id") Long id) {
 		return userServiceImpl.getUserById(id);
+	}
+	
+	/** Get: Read info about an user by Username */
+	@GetMapping("/susers/username/{username}")
+	public Suser getUserByUsername(@PathVariable(name = "username")String username) {
+		return userServiceImpl.getUserByUsername(username);
 	}
 
 	/** Update: an user */

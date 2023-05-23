@@ -12,5 +12,5 @@ import com.safein.backend.dto.Suser;
  *
  */
 public interface ISuserDAO extends JpaRepository<Suser, Long> {
-	Suser findByUsername(Object username);
+	Suser findByUsername(String username);
 }

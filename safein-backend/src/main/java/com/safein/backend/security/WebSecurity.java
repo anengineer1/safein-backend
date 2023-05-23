@@ -98,6 +98,7 @@ public class WebSecurity {
              //Filter SUser
              .requestMatchers(HttpMethod.GET,"/susers").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/susers/**").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/susers/username/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.POST,"/register").hasAnyAuthority("admin")
              .requestMatchers(HttpMethod.PUT,"/susers/**").hasAnyAuthority("admin")
              .requestMatchers(HttpMethod.DELETE,"/susers/**").hasAnyAuthority("admin")
