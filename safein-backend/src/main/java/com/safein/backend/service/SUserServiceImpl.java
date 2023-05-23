@@ -21,37 +21,43 @@ public class SUserServiceImpl implements ISUserService {
 	@Autowired
 	ISuserDAO iUserDAO;
 
-	 /**Get: List all users */
+	/** Get: List all users */
 	@Override
 	public List<Suser> listUsers() {
 
 		return iUserDAO.findAll();
 	}
 
-	 /**Create: Save an user */
+	/** Create: Save an user */
 	@Override
 	public Suser saveUser(Suser user) {
 
 		return iUserDAO.save(user);
 	}
 
-	/**Get: Read info about an user */
+	/** Get: Read info about an user */
 	@Override
 	public Suser getUserById(Long id) {
-		
+
 		return iUserDAO.findById(id).get();
 	}
 
-	/**Update: an user */
+	/** Update: an user */
 	@Override
 	public Suser updateUser(Suser user) {
 
 		return iUserDAO.save(user);
 	}
 
-	/** Delete: an user*/
+	/** Delete: an user */
 	@Override
 	public void deleteUser(Long id) {
 		iUserDAO.deleteById(id);
+	}
+
+	/** Look by username */
+	@Override
+	public Suser getUserByUsername(String username) {
+		return iUserDAO.findByUsername(username);
 	}
 }
