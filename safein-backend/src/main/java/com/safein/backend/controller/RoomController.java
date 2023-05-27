@@ -6,12 +6,14 @@ package com.safein.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.safein.backend.dto.Room;
@@ -41,8 +43,8 @@ public class RoomController {
 	}
 
 	/** Get: List all rooms by Hotel ID */
-	@GetMapping("/rooms/hotels/{hotel_id}") 
-	public List<Room> listRoomsByHotelId(@PathVariable(name = "hotel_id")Long hotel_id) {
+	@GetMapping("/rooms/hotels/{hotel_id}")
+	public List<Room> listRoomsByHotelId(@PathVariable(name = "hotel_id") Long hotel_id) {
 		return iRoomServiceImpl.listRoomsByHotelId(hotel_id);
 	}
 
@@ -54,7 +56,7 @@ public class RoomController {
 
 	/** Get: List all rooms By {internet_type} String */
 	@GetMapping("/rooms/inettype/{internet_type}")
-	public List<Room> listRoomsByInternet(@PathVariable(name = "internet_type")String internet_type) {
+	public List<Room> listRoomsByInternet(@PathVariable(name = "internet_type") String internet_type) {
 		return iRoomServiceImpl.listRoomsByInternet(internet_type);
 	}
 
@@ -66,7 +68,7 @@ public class RoomController {
 
 	/** Get: List all rooms By has_terrace{has_terrace}Boolean */
 	@GetMapping("/rooms/terrace/{has_terrace}")
-	public List<Room> listRoomsByTerrace(@PathVariable(name = "has_terrace")Boolean has_terrace) {
+	public List<Room> listRoomsByTerrace(@PathVariable(name = "has_terrace") Boolean has_terrace) {
 		return iRoomServiceImpl.listRoomsByTerrace(has_terrace);
 	}
 
@@ -75,11 +77,12 @@ public class RoomController {
 	 * num:people{num_people}Long Long
 	 */
 	@GetMapping("/rooms/{hotel_id}/numpers/{num_people}")
-	public List<Room> listRoomsByHotelIdAndNumPeople(@PathVariable(name = "hotel_id")Long hotel_id, @PathVariable(name = "num_people")Long num_people){
+	public List<Room> listRoomsByHotelIdAndNumPeople(@PathVariable(name = "hotel_id") Long hotel_id,
+			@PathVariable(name = "num_people") Long num_people) {
 		return iRoomServiceImpl.listByHotelIdAndNumPersons(hotel_id, num_people);
 	}
-	
-	/*Create a room*/
+
+	/* Create a room */
 	@PostMapping("/rooms")
 	public Room saveRoom(@RequestBody Room room) {
 
@@ -87,6 +90,7 @@ public class RoomController {
 	}
 
 	/** Update: an room */
+	@CrossOrigin(origins = "*", methods = {RequestMethod.PUT})
 	@PutMapping("/rooms/{id}")
 	public Room updateRoom(@PathVariable(name = "id") Long id, @RequestBody Room room) {
 

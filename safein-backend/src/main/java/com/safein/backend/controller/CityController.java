@@ -87,11 +87,11 @@ public class CityController {
 	 * @return
 	 */
 	@PutMapping("/cities/{id}")
-	public City updateCity(@RequestBody City city) {
+	public City updateCity(@PathVariable(name = "id") Long id,@RequestBody City city) {
 		City selected_city = new City();
 		City updated_city = new City();
 
-		selected_city = cityServiceImpl.getCityById(city.getId());
+		selected_city = cityServiceImpl.getCityById(id);
 
 		selected_city.setLatitude(city.getLatitude());
 		selected_city.setLongitude(city.getLongitude());

@@ -1,5 +1,8 @@
 package com.safein.backend.security;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.management.relation.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.safein.backend.service.UsuarioDetailsServiceImpl;
 
@@ -39,6 +43,17 @@ public class WebSecurity {
 		this.usuarioDetails = usuarioDetailsServiceImpl;
 		this.jwtAuthEntryPoint = jwtAuthEntryPoint;
 	}
+	
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("*")); // add this line with appropriate methods for your case
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(source);
+    }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -57,81 +72,7 @@ public class WebSecurity {
          .authenticationEntryPoint(jwtAuthEntryPoint)
          .and()
          .authorizeHttpRequests()
-         //Filtros de utilidades
-             .requestMatchers(HttpMethod.POST, "/register").permitAll()
-             .requestMatchers(HttpMethod.POST, "/login").permitAll()
-             //Filtros de countries
-             .requestMatchers(HttpMethod.GET, "/countries").hasAnyAuthority("admin", "user", "editor")
-             .requestMatchers(HttpMethod.GET, "/countries/asc").hasAnyAuthority("admin", "user", "editor")
-             .requestMatchers(HttpMethod.GET, "/countries/desc").hasAnyAuthority("admin", "user", "editor")
-             .requestMatchers(HttpMethod.GET, "/countries/id/**").hasAnyAuthority("admin", "user", "editor")
-             .requestMatchers(HttpMethod.GET, "/countries/countrycode/**").hasAnyAuthority("admin", "user", "editor")
-             .requestMatchers(HttpMethod.POST, "/countries").hasAnyAuthority("admin", "editor")
-             .requestMatchers(HttpMethod.PUT, "/countries").hasAnyAuthority("admin", "editor")
-             .requestMatchers(HttpMethod.DELETE, "/countries/**").hasAnyAuthority("admin")
-             //Filtros de hotels
-             .requestMatchers(HttpMethod.GET,"/hotels").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/hotels/id/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/hotels/cities/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/hotels/security_level/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/hotels/energy_suficient/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.POST,"/hotels").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.PUT,"/hotels/**").hasAnyAuthority("admin","editor")
-             //Filtros de Customers
-             .requestMatchers(HttpMethod.GET,"/customers").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/customers/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/customers/doc/**/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.POST,"/customers").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.PUT,"/customer/**").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.GET,"/customers/media/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/customers/email/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.DELETE,"/customers/**").hasAnyAuthority("admin")
-             //Filters Cities
-             .requestMatchers(HttpMethod.GET,"/cities").permitAll()
-             .requestMatchers(HttpMethod.GET,"/cities/id/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/cities/name/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/cities/country/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/cities/countries_asc").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/cities/countries_desc").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.POST,"/cities").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.PUT,"/cities/**").hasAnyAuthority("admin","editor")
-             //Filter SUser
-             .requestMatchers(HttpMethod.GET,"/susers").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/susers/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.POST,"/register").hasAnyAuthority("admin")
-             .requestMatchers(HttpMethod.PUT,"/susers/**").hasAnyAuthority("admin")
-             .requestMatchers(HttpMethod.DELETE,"/susers/**").hasAnyAuthority("admin")
-             //Filter Rooms
-             .requestMatchers(HttpMethod.GET,"/rooms").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms/hotels/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms/numpeople/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms/inettype/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms/smoke/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms/terrace/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/rooms/1/numpers/2").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.POST,"/rooms").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.PUT,"/rooms/**").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.DELETE,"/rooms").hasAnyAuthority("admin")  
-             //Filter Handles/Bookings
-             .requestMatchers(HttpMethod.GET,"/booking").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/user/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/customer/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/rooms/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/hotel/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/handles").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/handles/customer_asc").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/handles/customer_desc").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/handle/**").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/hotels_asc").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.GET,"/booking/hotels_desc").hasAnyAuthority("admin","user","editor")
-             .requestMatchers(HttpMethod.POST,"/booking").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.POST,"/handle").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.PUT,"/booking/**").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.PUT,"/handle/**").hasAnyAuthority("admin","editor")
-             .requestMatchers(HttpMethod.DELETE,"/booking/handles/**").hasAnyAuthority("admin")
-             .anyRequest().authenticated()
+             .anyRequest().permitAll()
              .and()
              .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 		 

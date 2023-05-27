@@ -97,13 +97,13 @@ public class CountryController {
 	 * @param country
 	 * @return
 	 */
-	@PutMapping("/countries")
-	public Country updateCountry(@RequestBody Country country) {
+	@PutMapping("/countries{id}")
+	public Country updateCountry(@PathVariable(name = "id") Long id,@RequestBody Country country) {
 
 		Country selected_country = new Country();
 		Country updated_country = new Country();
 
-		selected_country = countryServiceImpl.getCountryById(country.getId());
+		selected_country = countryServiceImpl.getCountryById(id);
 
 		selected_country.setCountryCode(country.getCountryCode());
 		selected_country.setCountryName(country.getCountryName());
