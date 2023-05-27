@@ -1,5 +1,8 @@
 package com.safein.backend.security;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.management.relation.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.safein.backend.service.UsuarioDetailsServiceImpl;
 
@@ -39,6 +43,17 @@ public class WebSecurity {
 		this.usuarioDetails = usuarioDetailsServiceImpl;
 		this.jwtAuthEntryPoint = jwtAuthEntryPoint;
 	}
+	
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("*")); // add this line with appropriate methods for your case
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(source);
+    }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
