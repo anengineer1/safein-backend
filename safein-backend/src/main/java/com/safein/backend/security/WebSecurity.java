@@ -141,6 +141,8 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.GET,"/booking/handle/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/booking/hotels_asc").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/booking/hotels_desc").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/booking/handle/latests").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/booking/handle/latests/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.POST,"/booking").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.POST,"/handle").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.PUT,"/booking/**").hasAnyAuthority("admin","editor")
