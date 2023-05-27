@@ -3,6 +3,8 @@ package com.safein.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +54,15 @@ public class BookingController {
 	@GetMapping("/booking")
 	public List<Booking> listBookings() {
 		return bookingServiceImpl.listAllBookings();
+	}
+	
+	@GetMapping("/booking/handle/latests")
+	public List<Handle> listLatestHandles() {
+		return bookingServiceImpl.listLatest5Handles().getContent();
+	}
+	@GetMapping("/booking/handle/latests/{susers}")
+	public List<Handle> listLatestBookingByUserEmail(@PathVariable(name = "susers") String suser_email) {
+		return bookingServiceImpl.listLatest5HandlesByUserEmail(suser_email).getContent();
 	}
 	
 	@GetMapping("/booking/handle/{id}")
