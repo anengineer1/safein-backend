@@ -19,7 +19,7 @@ DDBB planification: [Draw.io](https://app.digrams.net/#G1pGv2FcSjPuVIE7ehNoWT0x_
 Collections with tested queries: [Postman](https://safein.postman.co/workspace/SafeIn~0d5e7821-c649-4f3f-be5f-7e1da71f44f8/overview)
 
 ## Planification 🖋
-We used trello for the planification the different tasks 
+We used trello for planificating the different tasks 
 
 ## Authors 👨‍👨‍👧
 * **Alejandro Jiménez Álvarez** - [Linkedin](https://www.linkedin.com/in/alejandro-jimenez-alvarez/) - [GitHub](https://github.com/aljimez)
