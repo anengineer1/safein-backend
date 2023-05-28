@@ -1,4 +1,4 @@
-#  Safein Project
+#  Safein Project (Backend)
 The safein backend is focused on bookings for war correspondents 
 
 ## Technology Stack 🖥
