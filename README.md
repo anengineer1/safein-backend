@@ -1,5 +1,7 @@
 #  Safein Project (Backend)
-The safein backend is focused on bookings for war correspondents 
+SafeIn is a web application that manages special bookings that focuses on press media
+people(journalists, war correspondents,others..). SafeIn provides the security they need as
+there are some countries whose situation can endanger their live or lifestyle.
 
 ## Technology Stack 🖥
 We used: 
