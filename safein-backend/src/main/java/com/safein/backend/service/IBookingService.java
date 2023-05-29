@@ -5,6 +5,8 @@ package com.safein.backend.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
 import com.safein.backend.dto.Hotel;
@@ -69,6 +71,10 @@ public interface IBookingService {
 	public List<Handle> listAllHandlesSortedAscByHotels();
 
 	public List<Handle> listAllHandlesSortedDescByHotels();
-
 	
+	// List 5 latests handles
+	public Page<Handle> listLatest5Handles();
+	
+	// List latest 5 handles filtered by user 
+	public Page<Handle> listLatest5HandlesByUserEmail(String email);
 }

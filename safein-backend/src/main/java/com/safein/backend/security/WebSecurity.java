@@ -1,5 +1,8 @@
 package com.safein.backend.security;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.management.relation.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.safein.backend.service.UsuarioDetailsServiceImpl;
 
@@ -39,6 +43,17 @@ public class WebSecurity {
 		this.usuarioDetails = usuarioDetailsServiceImpl;
 		this.jwtAuthEntryPoint = jwtAuthEntryPoint;
 	}
+	
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("*")); // add this line with appropriate methods for your case
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return new CorsFilter(source);
+    }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -58,6 +73,7 @@ public class WebSecurity {
          .and()
          .authorizeHttpRequests()
          //Filtros de utilidades
+             .requestMatchers(HttpMethod.GET, "/").permitAll()
              .requestMatchers(HttpMethod.POST, "/register").permitAll()
              .requestMatchers(HttpMethod.POST, "/login").permitAll()
              //Filtros de countries
@@ -87,7 +103,7 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.GET,"/customers/email/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.DELETE,"/customers/**").hasAnyAuthority("admin")
              //Filters Cities
-             .requestMatchers(HttpMethod.GET,"/cities").permitAll()
+             .requestMatchers(HttpMethod.GET,"/cities").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/cities/id/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/cities/name/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/cities/country/**").hasAnyAuthority("admin","user","editor")
@@ -126,6 +142,8 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.GET,"/booking/handle/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/booking/hotels_asc").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/booking/hotels_desc").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/booking/handle/latests").hasAnyAuthority("admin","user","editor")
+             .requestMatchers(HttpMethod.GET,"/booking/handle/latests/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.POST,"/booking").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.POST,"/handle").hasAnyAuthority("admin","editor")
              .requestMatchers(HttpMethod.PUT,"/booking/**").hasAnyAuthority("admin","editor")

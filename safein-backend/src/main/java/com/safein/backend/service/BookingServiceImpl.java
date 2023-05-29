@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -144,13 +146,12 @@ public class BookingServiceImpl implements IBookingService {
 	public List<Handle> listAllHandlesSortedAscByHotels() {
 		return iHandleDAO.findAll(Sort.by("room.hotel.id").ascending());
 	}
-	
-	
+
 	@Override
 	public List<Handle> listAllHandlesSortedDescByHotels() {
 		return iHandleDAO.findAll(Sort.by("room.hotel.id").descending());
 	}
-	
+
 	@Override
 	public List<Handle> listAllHandlesSortedAscByCustomer() {
 		return iHandleDAO.findAll(Sort.by("Booking.Customers.id").ascending());
@@ -161,6 +162,17 @@ public class BookingServiceImpl implements IBookingService {
 		return iHandleDAO.findAll(Sort.by("Booking.Customers.id").descending());
 	}
 
+	@Override
+	public Page<Handle> listLatest5Handles() {
+		return iHandleDAO.findAll(
+				// Get the latest 5 elements from the database
+				PageRequest.of(0, 5, Sort.by("id").descending()));
+	}
 
-
+	@Override
+	public Page<Handle> listLatest5HandlesByUserEmail(String email) {
+		return iHandleDAO.findByBookingSuserEmail(email,
+				// Get the latest 5 elements
+				PageRequest.of(0, 5, Sort.by("id").descending()));
+	}
 }
