@@ -108,7 +108,7 @@ public class BookingController {
 	}
 	
 	@PostMapping("/handle")
-	public Handle createBooking(@RequestBody Handle handle) {
+	public Handle createHandle(@RequestBody Handle handle) {
 		return bookingServiceImpl.saveHandle(handle);
 	}
 
