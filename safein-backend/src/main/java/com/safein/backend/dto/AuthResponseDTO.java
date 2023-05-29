@@ -10,6 +10,7 @@ public class AuthResponseDTO {
 
 	@Id
 	private long id;
+	private long userId;
 	private String accessToken;
 	private String tokenType = "Bearer ";
 	private String username;
@@ -102,6 +103,26 @@ public class AuthResponseDTO {
 	 */
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	/**
+	 * @return the userId
+	 */
+	public long getUserId() {
+		return userId;
+	}
+
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	@Override
+	public String toString() {
+		return "AuthResponseDTO [id=" + id + ", userId=" + userId + ", accessToken=" + accessToken + ", tokenType="
+				+ tokenType + ", username=" + username + ", email=" + email + ", role=" + role + "]";
 	}
 
 }

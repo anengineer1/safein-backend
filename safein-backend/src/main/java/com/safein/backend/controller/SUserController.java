@@ -86,6 +86,7 @@ public class SUserController {
 			authResponseDTO.setUsername(suser.getUsername());
 			authResponseDTO.setEmail(suser.getEmail());
 			authResponseDTO.setRole(suser.getRole());
+			authResponseDTO.setUserId(suser.getId());
 		}
 		return new ResponseEntity<>(authResponseDTO, HttpStatus.OK);
 	}
