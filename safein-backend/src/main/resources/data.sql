@@ -24,9 +24,10 @@ country_code varchar(2) NOT NULL UNIQUE,
 country_name varchar(255) NOT NULL,
 latitude DOUBLE NOT NULL,
 longitude DOUBLE NOT NULL,
-situation ENUM ("Tension Between Countries","Risk of war","War","High crime","Political instability","Natural Disaster") NOT NULL,
+situation ENUM ("Tension Between Countries","Risk of war","War","High crime","Political instability","Natural Disaster","Peace") NOT NULL,
 PRIMARY KEY (id)
 );
+
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('UA',"Ukraine", 49.0000000, 32.0000000,'War');
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('SO',"Somalia", 10.0000000, 49.0000000,'War');
 INSERT INTO countries (country_code,country_name,latitude,longitude,situation) VALUE ('ID',"Indonesia", -5.0000000, 120.0000000,'Natural Disaster');
