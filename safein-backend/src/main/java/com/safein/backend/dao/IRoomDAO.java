@@ -6,6 +6,7 @@ package com.safein.backend.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.safein.backend.dto.Booking;
 import com.safein.backend.dto.Handle;
@@ -36,8 +37,7 @@ public interface IRoomDAO  extends JpaRepository<Room, Long>{
 	List<Room> findRoomsByHasTerrace(Boolean has_terrace); 
 	
 	/**TODO:Get: List all rooms in hotel By hotel_id{hotel_id} and num:people{num_people}Long Long */
-	
-	List<Room> findByHotelIdAndNumPeople(Long hotel_id,Long numPeople);
+	List<Room> findByNumPeopleAndHotelId(Long numPeople, Long hotelId);
 
 	List<Room> findByHandles(Handle handle);
 	

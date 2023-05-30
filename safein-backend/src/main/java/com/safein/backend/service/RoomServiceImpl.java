@@ -2,6 +2,7 @@
  * 
  */
 package com.safein.backend.service;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,24 +72,17 @@ public class RoomServiceImpl implements IRoomService {
 
 	@Override
 	public List<Room> listByHotelIdAndNumPersons(Long hotel_id, Long numPeople) {
-		List<Room> rooms_by_hotel = listRoomsByHotelId(hotel_id);
-		List<Room> hs = new ArrayList<>();
-
-		for (Room room : rooms_by_hotel) {
-			hs.addAll(iRoomDAO.findRoomsByNumPeople(numPeople));
-		}
-		
-		return hs;
+		return iRoomDAO.findByNumPeopleAndHotelId(numPeople, hotel_id);
 	}
 
-	/* Create a room*/
+	/* Create a room */
 	@Override
 	public Room saveRoom(Room room) {
 		return iRoomDAO.save(room);
 	}
 
 	public Room updateRoom(Room room) {
-		
+
 		return iRoomDAO.save(room);
 	}
 }
