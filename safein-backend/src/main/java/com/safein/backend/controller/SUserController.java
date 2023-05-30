@@ -123,7 +123,6 @@ public class SUserController {
 		user_selected.setPassword(user.getPassword());
 		user_selected.setNomApels(user.getNomApels());
 		user_selected.setEmail(user.getEmail());
-		user_selected.setBookings(user.getBookings());
 
 		return userServiceImpl.updateUser(user_selected);
 	}
