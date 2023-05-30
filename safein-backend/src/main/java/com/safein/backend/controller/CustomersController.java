@@ -60,6 +60,7 @@ public class CustomersController {
 		customers_selected.setPhonenumber(customers.getPhonenumber());
 		customers_selected.setNumIdentifier(customers.getNumIdentifier());
 		customers_selected.setPressMedia(customers.getPressMedia());
+		customers_selected.setCountry(customers.getCountry());
 
 		return customersServiceImpl.updateCustomer(customers_selected);
 	}
