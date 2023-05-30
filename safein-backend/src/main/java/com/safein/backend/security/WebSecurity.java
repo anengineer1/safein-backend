@@ -115,7 +115,7 @@ public class WebSecurity {
              .requestMatchers(HttpMethod.GET,"/susers").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.GET,"/susers/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.POST,"/register").hasAnyAuthority("admin")
-             .requestMatchers(HttpMethod.PUT,"/susers/**").hasAnyAuthority("admin")
+             .requestMatchers(HttpMethod.PUT,"/susers/**").hasAnyAuthority("admin","user","editor")
              .requestMatchers(HttpMethod.DELETE,"/susers/**").hasAnyAuthority("admin")
              //Filter Rooms
              .requestMatchers(HttpMethod.GET,"/rooms").hasAnyAuthority("admin","user","editor")
